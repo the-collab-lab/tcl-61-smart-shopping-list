@@ -10,6 +10,8 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Hanson Tram](https://github.com/hansontram) 😎
 
+- [Lizzy Pine](https://github.com/lizzypine) 🌱
+
 ## Mentors
 
 ## Code of Conduct Contacts
