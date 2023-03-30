@@ -16,4 +16,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 ## Mentors
 
+- [Tim Taylor](https://github.com/timothy-taylor) 🔭
+
 ## Code of Conduct Contacts
