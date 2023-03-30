@@ -12,6 +12,8 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Lizzy Pine](https://github.com/lizzypine) 🌱
 
+- [Yufa Li](https://github.com/01001101CK) 🧘‍♀️
+
 ## Mentors
 
 ## Code of Conduct Contacts
