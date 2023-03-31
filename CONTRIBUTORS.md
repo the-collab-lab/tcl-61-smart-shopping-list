@@ -18,4 +18,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Tim Taylor](https://github.com/timothy-taylor) 🔭
 
+- [Lauren Yu](https://github.com/laurenyz) 🐘
+
 ## Code of Conduct Contacts
