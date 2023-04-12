@@ -32,6 +32,7 @@ export function AddItem({ listToken }) {
 					type="text"
 					id="itemName"
 					name="itemName"
+					value={itemName}
 					onChange={handleNameInput}
 					required
 				/>
