@@ -1,8 +1,6 @@
 import './Home.css';
 
-export function Home(props) {
-	const { onClick } = props;
-
+export function Home({ onClick }) {
 	return (
 		<div className="Home">
 			<p>
