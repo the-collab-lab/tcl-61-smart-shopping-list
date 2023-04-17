@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -10,8 +10,6 @@ import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
-
-import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
 	const [data, setData] = useState([]);
@@ -29,11 +27,6 @@ export function App() {
 		null,
 		'tcl-shopping-list-token',
 	);
-
-	const handleClick = useCallback(() => {
-		const newToken = generateToken();
-		setListToken(newToken);
-	}, [setListToken]);
 
 	useEffect(() => {
 		if (!listToken) return;
@@ -69,7 +62,7 @@ export function App() {
 							listToken ? (
 								<Navigate to="/list" />
 							) : (
-								<Home onClick={handleClick} />
+								<Home setListToken={setListToken} />
 							)
 						}
 					/>
