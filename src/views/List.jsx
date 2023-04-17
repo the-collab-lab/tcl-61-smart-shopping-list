@@ -16,7 +16,7 @@ export function List({ data }) {
 	return (
 		<>
 			<form>
-				<label htmlFor="itemSearch">Item name:</label>
+				<label htmlFor="itemSearch">Search your shopping list:</label>
 				<input
 					type="text"
 					id="itemSearch"
@@ -24,7 +24,11 @@ export function List({ data }) {
 					value={itemSearch}
 					onChange={handleSearchInput}
 				/>
-				{itemSearch ? <button onClick={handleClear}>x</button> : null}
+				{itemSearch ? (
+					<button onClick={handleClear} aria-label="clear search field">
+						x
+					</button>
+				) : null}
 			</form>
 			<ul>
 				{data
