@@ -22,7 +22,8 @@ export function AddItem({ listToken }) {
 		setDaysUntilNextPurchase(7);
 	};
 
-	const handleNameInput = (e) => setItemName(e.target.value);
+	const handleNameInput = (e) =>
+		setItemName(e.target.value.split(/ +/).join(' '));
 
 	const handleFrequencyInput = (e) => setDaysUntilNextPurchase(+e.target.value);
 
