@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 import { ListItem } from '../components';
 
 export function List({ data }) {
 	const [itemSearch, setItemSearch] = useState('');
 
-	const handleSearchInput = (e) => {
-		setItemSearch(e.target.value.toLowerCase());
-	};
-
-	const handleClear = () => {
-		setItemSearch('');
-	};
+	const searchedData = useMemo(() => {
+		if (!itemSearch) {
+			return data;
+		} else {
+			return data.filter((item) => {
+				return item.name.toLowerCase().includes(itemSearch);
+			});
+		}
+	}, [data, itemSearch]);
 
 	return (
 		<>
@@ -22,20 +24,21 @@ export function List({ data }) {
 					id="itemSearch"
 					name="itemSearch"
 					value={itemSearch}
-					onChange={handleSearchInput}
+					onChange={(e) => setItemSearch(e.target.value.toLowerCase())}
 				/>
 				{itemSearch ? (
-					<button onClick={handleClear} aria-label="clear search field">
+					<button
+						onClick={() => setItemSearch('')}
+						aria-label="clear search field"
+					>
 						x
 					</button>
 				) : null}
 			</form>
 			<ul>
-				{data
-					.filter((item) => item.name.toLowerCase().includes(itemSearch))
-					.map((data, i) => (
-						<ListItem key={i} name={data.name} />
-					))}
+				{searchedData.map((data, i) => {
+					return <ListItem key={i} name={data.name} />;
+				})}
 			</ul>
 		</>
 	);
