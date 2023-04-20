@@ -24,16 +24,16 @@ export function List({ data }) {
 					id="itemSearch"
 					name="itemSearch"
 					value={itemSearch}
-					onChange={(e) => setItemSearch(e.target.value.toLowerCase())}
+					onChange={(e) => setItemSearch(e.target.value.toLowerCase().trim())}
 				/>
-				{itemSearch ? (
+				{itemSearch && (
 					<button
 						onClick={() => setItemSearch('')}
 						aria-label="clear search field"
 					>
 						x
 					</button>
-				) : null}
+				)}
 			</form>
 			<ul>
 				{searchedData.map((data, i) => {
