@@ -9,8 +9,12 @@ export function AddItem({ listToken }) {
 
 	const submitForm = (e) => {
 		e.preventDefault();
+		addItemToList();
+	};
+
+	const addItemToList = async () => {
 		try {
-			addItem(listToken, { itemName, daysUntilNextPurchase });
+			await addItem(listToken, { itemName, daysUntilNextPurchase });
 			setSubmitStatus({
 				type: 'success',
 				value: 'Item was successfully saved to the database',
