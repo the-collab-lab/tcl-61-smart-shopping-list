@@ -5,25 +5,29 @@ import { addItem } from '../api/firebase';
 export function AddItem({ listToken }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
-	const [isError, setIsError] = useState(false);
-	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [submitStatus, setSubmitStatus] = useState({ type: 'idle', value: '' });
 
 	const submitForm = (e) => {
 		e.preventDefault();
 		try {
 			addItem(listToken, { itemName, daysUntilNextPurchase });
-			setIsError(false);
-			setIsSubmitted(true);
-		} catch {
-			setIsError(true);
-			setIsSubmitted(true);
+			setSubmitStatus({
+				type: 'success',
+				value: 'Item was successfully saved to the database',
+			});
+		} catch (err) {
+			setSubmitStatus({
+				type: 'error',
+				value: 'Item is NOT saved in the database',
+			});
 		}
 		setItemName('');
 		setDaysUntilNextPurchase(7);
 	};
 
-	const handleNameInput = (e) =>
+	const handleNameInput = (e) => {
 		setItemName(e.target.value.split(/ +/).join(' '));
+	};
 
 	const handleFrequencyInput = (e) => setDaysUntilNextPurchase(+e.target.value);
 
@@ -73,13 +77,7 @@ export function AddItem({ listToken }) {
 			</fieldset>
 
 			<button type="submit">Add Item</button>
-			{isSubmitted ? (
-				isError ? (
-					<p>"Item is NOT saved in the database"</p>
-				) : (
-					<p>"Item is saved in the database"</p>
-				)
-			) : null}
+			<p>{submitStatus.value}</p>
 		</form>
 	);
 }
