@@ -13,8 +13,12 @@ export function AddItem({ listToken }) {
 	};
 
 	const addItemToList = async () => {
+		const trimmedItemName = itemName.trim();
 		try {
-			await addItem(listToken, { itemName, daysUntilNextPurchase });
+			await addItem(listToken, {
+				itemName: trimmedItemName,
+				daysUntilNextPurchase,
+			});
 			setSubmitStatus({
 				type: 'success',
 				value: 'Item was successfully saved to the database',

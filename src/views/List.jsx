@@ -24,7 +24,7 @@ export function List({ data }) {
 					id="itemSearch"
 					name="itemSearch"
 					value={itemSearch}
-					onChange={(e) => setItemSearch(e.target.value.toLowerCase().trim())}
+					onChange={(e) => setItemSearch(e.target.value.toLowerCase())}
 				/>
 				{itemSearch && (
 					<button
