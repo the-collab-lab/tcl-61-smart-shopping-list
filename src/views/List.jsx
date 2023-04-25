@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 
 import { ListItem } from '../components';
 
-export function List({ data }) {
+export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
 
 	const searchedData = useMemo(() => {
@@ -35,11 +35,21 @@ export function List({ data }) {
 					</button>
 				)}
 			</form>
-			<ul>
-				{searchedData.map((data, i) => {
-					return <ListItem key={i} name={data.name} />;
-				})}
-			</ul>
+			<form>
+				<ul>
+					{searchedData.map((data, i) => {
+						return (
+							<ListItem
+								key={i}
+								name={data.name}
+								listToken={listToken}
+								itemId={data.id}
+								dateLastPurchased={data.dateLastPurchased}
+							/>
+						);
+					})}
+				</ul>
+			</form>
 		</>
 	);
 }
