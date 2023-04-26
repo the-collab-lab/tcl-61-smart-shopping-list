@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-
+import { Link } from 'react-router-dom';
 import { ListItem } from '../components';
 
 export function List({ data }) {
@@ -15,7 +15,7 @@ export function List({ data }) {
 		}
 	}, [data, itemSearch]);
 
-	return (
+	return data.length > 0 ? (
 		<>
 			<form>
 				<label htmlFor="itemSearch">Search your shopping list:</label>
@@ -41,5 +41,14 @@ export function List({ data }) {
 				})}
 			</ul>
 		</>
+	) : (
+		<div>
+			<p>
+				Welcome to your shopping list. Your Shopping List is currently empty!
+			</p>
+			<Link to={'/add-item'}>
+				<button>Add Item</button>
+			</Link>
+		</div>
 	);
 }
