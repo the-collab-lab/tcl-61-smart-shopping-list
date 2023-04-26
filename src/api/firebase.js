@@ -83,6 +83,16 @@ export async function updateItem(listId, itemId) {
 	});
 }
 
+export async function undoUpdateItem(listId, itemId) {
+	const listItemRef = doc(db, listId, itemId);
+	const listItemSnap = await getDoc(listItemRef);
+	const totalPurchases = listItemSnap.data().totalPurchases;
+	await updateDoc(listItemRef, {
+		dateLastPurchased: null,
+		totalPurchases: totalPurchases - 1,
+	});
+}
+
 export async function deleteItem() {
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
