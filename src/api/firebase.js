@@ -73,23 +73,15 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(listId, itemId) {
+export async function updateItem(checked, listId, itemId) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 	const totalPurchases = listItemSnap.data().totalPurchases;
 	await updateDoc(listItemRef, {
-		dateLastPurchased: new Date(),
-		totalPurchases: totalPurchases + 1,
-	});
-}
-
-export async function undoUpdateItem(listId, itemId) {
-	const listItemRef = doc(db, listId, itemId);
-	const listItemSnap = await getDoc(listItemRef);
-	const totalPurchases = listItemSnap.data().totalPurchases;
-	await updateDoc(listItemRef, {
-		dateLastPurchased: null,
-		totalPurchases: totalPurchases - 1,
+		// when the user marks an item as purchased, the date & number of purchases is updated
+		// if the item is then unchecked, the date last purchased will be updated to null & the total purchases will -1
+		dateLastPurchased: checked ? null : new Date(),
+		totalPurchases: checked ? totalPurchases - 1 : totalPurchases + 1,
 	});
 }
 

@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react';
-import { updateItem, undoUpdateItem } from '../api/firebase';
+import { updateItem } from '../api/firebase';
 
 import './ListItem.css';
 
 export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
 	const [wasPurchased, setWasPurchased] = useState(false);
 
-	const handleCheck = () => {
-		if (wasPurchased) {
-			undoUpdateItem(listToken, itemId);
-			setWasPurchased(false);
-		} else {
-			updateItem(listToken, itemId);
-			setWasPurchased(true);
-		}
+	const handleCheck = (checked) => {
+		updateItem(checked, listToken, itemId);
+		setWasPurchased((prevWasPurchased) => !prevWasPurchased);
 	};
 
 	useEffect(() => {
@@ -24,11 +19,7 @@ export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
 			? dateLastPurchased.toDate().getTime() + dayInMilliSec
 			: null;
 
-		if (currentDate < dateLastPurchasedPlus24h) {
-			setWasPurchased(true);
-		} else {
-			setWasPurchased(false);
-		}
+		setWasPurchased(currentDate < dateLastPurchasedPlus24h);
 	}, [dateLastPurchased]);
 
 	return (
@@ -44,7 +35,7 @@ export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
 				value={name}
 				title="Did you purchase the item?"
 				checked={wasPurchased}
-				onChange={handleCheck}
+				onChange={() => handleCheck(wasPurchased)}
 			/>
 			{name}
 		</li>
