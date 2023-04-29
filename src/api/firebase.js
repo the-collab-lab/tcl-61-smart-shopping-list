@@ -4,6 +4,8 @@ import {
 	doc,
 	addDoc,
 	getDocs,
+	getDoc,
+	updateDoc,
 } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
@@ -71,12 +73,16 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem() {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
+export async function updateItem(checked, listId, itemId) {
+	const listItemRef = doc(db, listId, itemId);
+	const listItemSnap = await getDoc(listItemRef);
+	const totalPurchases = listItemSnap.data().totalPurchases;
+	await updateDoc(listItemRef, {
+		// when the user marks an item as purchased, the date & number of purchases is updated
+		// if the item is then unchecked, the date last purchased will be updated to null & the total purchases will -1
+		dateLastPurchased: checked ? null : new Date(),
+		totalPurchases: checked ? totalPurchases - 1 : totalPurchases + 1,
+	});
 }
 
 export async function deleteItem() {
@@ -89,6 +95,5 @@ export async function deleteItem() {
 export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
 	const existingList = await getDocs(listCollectionRef);
-	console.log(existingList);
 	return existingList.empty ? false : true;
 }
