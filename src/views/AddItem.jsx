@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 
 import { addItem } from '../api/firebase';
 
-export function AddItem({ listToken }) {
+export function AddItem({ data, listToken }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [submitStatus, setSubmitStatus] = useState({ type: 'idle', value: '' });
@@ -12,17 +12,43 @@ export function AddItem({ listToken }) {
 		addItemToList();
 	};
 
+	// Take current list items and remove punctuation/spaces.
+	const removePunc = data.map((item) =>
+		item.name.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''),
+	);
+
 	const addItemToList = async () => {
 		const trimmedItemName = itemName.trim();
+
 		try {
-			await addItem(listToken, {
-				itemName: trimmedItemName,
-				daysUntilNextPurchase,
-			});
-			setSubmitStatus({
-				type: 'success',
-				value: 'Item was successfully saved to the database',
-			});
+			// Check if the item is already on the user's list.
+			if (
+				removePunc.includes(
+					trimmedItemName.toLowerCase().replace(/[^a-z0-9]/gi, ''),
+				)
+			) {
+				setSubmitStatus({
+					type: 'error',
+					value: 'You already added this item to your list.',
+				});
+
+				// Check if the user is trying to submit an empty item.
+			} else if (trimmedItemName === '') {
+				setSubmitStatus({
+					type: 'error',
+					value: 'Please enter an item.',
+				});
+			} else {
+				await addItem(listToken, {
+					itemName: trimmedItemName,
+					daysUntilNextPurchase,
+				});
+
+				setSubmitStatus({
+					type: 'success',
+					value: 'Item was successfully saved to the database',
+				});
+			}
 		} catch (err) {
 			setSubmitStatus({
 				type: 'error',
