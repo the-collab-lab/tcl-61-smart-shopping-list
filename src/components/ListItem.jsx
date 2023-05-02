@@ -1,26 +1,28 @@
-import { useEffect, useState } from 'react';
 import { updateItem } from '../api/firebase';
+import { getDaysBetweenDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 import './ListItem.css';
 
+const dayInMilliSec = 60 * 60 * 24 * 1000;
+
 export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
-	const [wasPurchased, setWasPurchased] = useState(false);
+	const currentDate = new Date().getTime();
+	const dateLastPurchaseMilliSec = dateLastPurchased.toDate().getTime();
+	const dateLastPurchasedPlus24h = dateLastPurchased
+		? dateLastPurchased.toDate().getTime() + dayInMilliSec
+		: null;
 
-	const handleCheck = (checked) => {
-		updateItem(checked, listToken, itemId);
-		setWasPurchased((prevWasPurchased) => !prevWasPurchased);
+	const wasPurchased = currentDate < dateLastPurchasedPlus24h;
+
+	const handleCheck = (checked, dateLastPurchased) => {
+		updateItem(checked, listToken, itemId, dateLastPurchaseMilliSec);
+		// console.log(dateLastPurchased.toDate().getTime())
+		// getDaysBetweenDates (of date last purchased and RN), pass that number to
+		getDaysBetweenDates(currentDate, dateLastPurchased);
+		// calculateEstimate, returns a new date which we then pass
+		// to the database to update the dateNextPurchased property
 	};
-
-	useEffect(() => {
-		const currentDate = new Date().getTime();
-		const dayInMilliSec = 60 * 60 * 24 * 1000;
-
-		const dateLastPurchasedPlus24h = dateLastPurchased
-			? dateLastPurchased.toDate().getTime() + dayInMilliSec
-			: null;
-
-		setWasPurchased(currentDate < dateLastPurchasedPlus24h);
-	}, [dateLastPurchased]);
 
 	return (
 		<li className="ListItem">
@@ -35,7 +37,7 @@ export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
 				value={name}
 				title="Did you purchase the item?"
 				checked={wasPurchased}
-				onChange={() => handleCheck(wasPurchased)}
+				onChange={() => handleCheck(wasPurchased, dateLastPurchaseMilliSec)}
 			/>
 			{name}
 		</li>

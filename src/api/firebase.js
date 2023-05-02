@@ -73,7 +73,13 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(checked, listId, itemId) {
+export async function updateItem(
+	checked,
+	listId,
+	itemId,
+	dateLastPurchaseMilliSec,
+) {
+	console.log(dateLastPurchaseMilliSec);
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 	const totalPurchases = listItemSnap.data().totalPurchases;
@@ -85,6 +91,19 @@ export async function updateItem(checked, listId, itemId) {
 	});
 }
 
+// export async function updateItem(checked, listId, itemId) {
+// 	console.log(checked)
+// 	const listItemRef = doc(db, listId, itemId);
+// 	const listItemSnap = await getDoc(listItemRef);
+// 	const totalPurchases = listItemSnap.data().totalPurchases;
+// 	checked ? await updateDoc(listItemRef, {totalPurchases: totalPurchases - 1 })
+// 		: await updateDoc(listItemRef, {
+// 			dateLastPurchased: new Date(),
+// 			totalPurchases: totalPurchases + 1,
+// 		})
+
+// }
+
 export async function deleteItem() {
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
@@ -92,6 +111,7 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
 export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
 	const existingList = await getDocs(listCollectionRef);
