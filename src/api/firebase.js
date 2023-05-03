@@ -8,7 +8,8 @@ import {
 	updateDoc,
 } from 'firebase/firestore';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, numOfDaysBtwnDates } from '../utils';
+// import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
  * Subscribe to changes on a specific list in the Firestore database (listId), and run a callback (handleSuccess) every time a change happens.
@@ -73,15 +74,40 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(checked, listId, itemId) {
+export async function updateItem(
+	checked,
+	listId,
+	itemId,
+	prevDateLastPurchased,
+) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
+	const dateNextPurchased = listItemSnap.data().dateNextPurchased;
+	const dateLastPurchased = listItemSnap.data().dateLastPurchased;
+	const currentDate = Date.now();
+
+	const previousEstimate = numOfDaysBtwnDates(
+		dateNextPurchased,
+		dateLastPurchased,
+	);
+	const daysSinceLastPurchase = numOfDaysBtwnDates(
+		dateLastPurchased,
+		currentDate,
+	);
 	const totalPurchases = listItemSnap.data().totalPurchases;
+
+	console.log(previousEstimate, daysSinceLastPurchase, totalPurchases);
+	// const estimateOfDates = calculateEstimate(previousEstimate, daysSinceLastPurchase, totalPurchases);
+
 	await updateDoc(listItemRef, {
-		// when the user marks an item as purchased, the date & number of purchases is updated
-		// if the item is then unchecked, the date last purchased will be updated to null & the total purchases will -1
-		dateLastPurchased: checked ? null : new Date(),
+		// when the user marks an item as purchased, the date is updated to today & 1 is added to number of purchases
+		// when the user unchecks an item to mark it as not purchased, the date is updated to the previous purchased date & 1 is subtracted from number of purchases
+		dateLastPurchased: checked ? prevDateLastPurchased : new Date(),
 		totalPurchases: checked ? totalPurchases - 1 : totalPurchases + 1,
+
+		//if numOfDay = 0, don't update dateNextPurchased
+		//if numOfDays is NOT 0, then update dateNextPurchased = getFutureDate(numOfDays)
+		// dateNextPurchased: estOfDays ? getFutureDate(estimateOfDates) : dateNextPurchased
 	});
 }
 

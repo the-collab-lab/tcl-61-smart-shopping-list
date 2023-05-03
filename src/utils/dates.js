@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 const ONE_DAY_IN_MILLISECONDS = 86400000;
 
 /**
@@ -11,16 +13,9 @@ export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
 
-export function getDaysBetweenDates(currentDate, dateLastPurchased) {
-	if (dateLastPurchased) {
-		const dateLastPurchasedInMilliSec = dateLastPurchased.toDate().getTime();
-		console.log(dateLastPurchasedInMilliSec);
-	} else {
-		console.log('no data');
-	}
-	//convert to milliseconds
-	//return the number of days that have passed between them
-	// return dateTwo - dateOne .toDate()
-	// console.log(currentDate);
-	// console.log(dateLastPurchased);
+export function numOfDaysBtwnDates(dateOne, dateTwo) {
+	const dateOneMillisec = dateOne.toDate().getTime();
+	const dateTwoMillisec = dateTwo.toDate().getTime();
+	const difference = Math.abs(dateOneMillisec - dateTwoMillisec);
+	return Math.round(difference / ONE_DAY_IN_MILLISECONDS);
 }
