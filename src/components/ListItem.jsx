@@ -8,16 +8,14 @@ const dayInMilliSec = 60 * 60 * 24 * 1000;
 
 export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
 	const currentDate = new Date().getTime();
-	const dateLastPurchaseMilliSec = dateLastPurchased.toDate().getTime();
 	const dateLastPurchasedPlus24h = dateLastPurchased
 		? dateLastPurchased.toDate().getTime() + dayInMilliSec
 		: null;
 
 	const wasPurchased = currentDate < dateLastPurchasedPlus24h;
 
-	const handleCheck = (checked, dateLastPurchased) => {
-		updateItem(checked, listToken, itemId, dateLastPurchaseMilliSec);
-		// console.log(dateLastPurchased.toDate().getTime())
+	const handleCheck = (checked) => {
+		updateItem(checked, listToken, itemId);
 		// getDaysBetweenDates (of date last purchased and RN), pass that number to
 		getDaysBetweenDates(currentDate, dateLastPurchased);
 		// calculateEstimate, returns a new date which we then pass
@@ -37,7 +35,7 @@ export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
 				value={name}
 				title="Did you purchase the item?"
 				checked={wasPurchased}
-				onChange={() => handleCheck(wasPurchased, dateLastPurchaseMilliSec)}
+				onChange={() => handleCheck(wasPurchased)}
 			/>
 			{name}
 		</li>

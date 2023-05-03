@@ -12,6 +12,12 @@ export function getFutureDate(offset) {
 }
 
 export function getDaysBetweenDates(currentDate, dateLastPurchased) {
+	if (dateLastPurchased) {
+		const dateLastPurchasedInMilliSec = dateLastPurchased.toDate().getTime();
+		console.log(dateLastPurchasedInMilliSec);
+	} else {
+		console.log('no data');
+	}
 	//convert to milliseconds
 	//return the number of days that have passed between them
 	// return dateTwo - dateOne .toDate()

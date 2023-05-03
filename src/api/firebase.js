@@ -73,13 +73,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(
-	checked,
-	listId,
-	itemId,
-	dateLastPurchaseMilliSec,
-) {
-	console.log(dateLastPurchaseMilliSec);
+export async function updateItem(checked, listId, itemId) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 	const totalPurchases = listItemSnap.data().totalPurchases;
@@ -90,19 +84,6 @@ export async function updateItem(
 		totalPurchases: checked ? totalPurchases - 1 : totalPurchases + 1,
 	});
 }
-
-// export async function updateItem(checked, listId, itemId) {
-// 	console.log(checked)
-// 	const listItemRef = doc(db, listId, itemId);
-// 	const listItemSnap = await getDoc(listItemRef);
-// 	const totalPurchases = listItemSnap.data().totalPurchases;
-// 	checked ? await updateDoc(listItemRef, {totalPurchases: totalPurchases - 1 })
-// 		: await updateDoc(listItemRef, {
-// 			dateLastPurchased: new Date(),
-// 			totalPurchases: totalPurchases + 1,
-// 		})
-
-// }
 
 export async function deleteItem() {
 	/**
