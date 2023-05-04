@@ -1,28 +1,38 @@
 import { useState } from 'react';
 
 import { updateItem } from '../api/firebase';
-// import { daysSinceLastPurchase } from '../utils';
+import { ONE_DAY_IN_MILLISECONDS } from '../utils';
 
 import './ListItem.css';
 
-const dayInMilliSec = 60 * 60 * 24 * 1000;
-
-export function ListItem({ name, listToken, itemId, dateLastPurchased }) {
+export function ListItem({
+	name,
+	listToken,
+	itemId,
+	dateLastPurchased,
+	dateNextPurchased,
+}) {
 	const [prevDateLastPurchased, setPrevDateLastPurchased] = useState(null);
+	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 
 	const currentDate = new Date().getTime();
 	const dateLastPurchasedPlus24h = dateLastPurchased
-		? dateLastPurchased.toDate().getTime() + dayInMilliSec
+		? dateLastPurchased.toDate().getTime() + ONE_DAY_IN_MILLISECONDS
 		: null;
 
 	const wasPurchased = currentDate < dateLastPurchasedPlus24h;
 
 	const handleCheck = (checked) => {
-		//save previous dateLastPurchased into state to use if the user unchecks an item
+		//save previous dateLastPurchased & dateNextPurchased into state to use if the user unchecks an item
 		setPrevDateLastPurchased(dateLastPurchased);
-
-		// const estOfDays = daysSinceLastPurchase(currentDate, dateLastPurchased);
-		updateItem(checked, listToken, itemId, prevDateLastPurchased);
+		setPrevDateNextPurchased(dateNextPurchased);
+		updateItem(
+			checked,
+			listToken,
+			itemId,
+			prevDateLastPurchased,
+			prevDateNextPurchased,
+		);
 	};
 
 	return (
