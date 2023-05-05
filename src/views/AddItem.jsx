@@ -12,35 +12,59 @@ export function AddItem({ data, listToken }) {
 		addItemToList();
 	};
 
-	// Take current list items and remove punctuation/spaces.
-	const removePunc = data.map((item) =>
-		item.name.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''),
-	);
+	// Removes excess spaces or special characters, and makes all leters lowercase.
+	const normalizeText = (item) => {
+		return item
+			.trim() // removes space before and after item
+			.split(/ +/) // removes extra spaces between words
+			.join(' ')
+			.toLowerCase() // makes text all lowercase
+			.replace(/[^a-z0-9]/gi, ''); // remove punctuation and special characters
+	};
+
+	// Checks if user's input item already exists in the database.
+	const checkIfItemExists = (item) => {
+		for (let i = 0; i < data.length; i++) {
+			// If the current database item (normalized) is the same as the user's input item (normalized)
+			if (normalizeText(data[i].name) === normalizeText(itemName)) {
+				return true;
+			}
+		}
+		return false;
+	};
 
 	const addItemToList = async () => {
-		const trimmedItemName = itemName.trim();
+		const normalizedItemName = normalizeText(itemName);
 
 		try {
 			// Check if the item is already on the user's list.
-			if (
-				removePunc.includes(
-					trimmedItemName.toLowerCase().replace(/[^a-z0-9]/gi, ''),
-				)
-			) {
+			if (checkIfItemExists(normalizedItemName)) {
 				setSubmitStatus({
 					type: 'error',
 					value: 'You already added this item to your list.',
 				});
+				setTimeout(() => {
+					setSubmitStatus({
+						type: 'idle',
+						value: '',
+					});
+				}, 3000);
 
 				// Check if the user is trying to submit an empty item.
-			} else if (trimmedItemName === '') {
+			} else if (normalizedItemName === '') {
 				setSubmitStatus({
 					type: 'error',
 					value: 'Please enter an item.',
 				});
+				setTimeout(() => {
+					setSubmitStatus({
+						type: 'idle',
+						value: '',
+					});
+				}, 3000);
 			} else {
 				await addItem(listToken, {
-					itemName: trimmedItemName,
+					itemName: itemName,
 					daysUntilNextPurchase,
 				});
 
@@ -60,7 +84,7 @@ export function AddItem({ data, listToken }) {
 	};
 
 	const handleNameInput = (e) => {
-		setItemName(e.target.value.split(/ +/).join(' '));
+		setItemName(e.target.value);
 	};
 
 	const handleFrequencyInput = (e) => setDaysUntilNextPurchase(+e.target.value);
