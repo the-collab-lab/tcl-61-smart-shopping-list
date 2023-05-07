@@ -75,7 +75,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 }
 
 export async function updateItem(
-	checked,
+	wasPurchased,
 	listId,
 	itemId,
 	prevDateLastPurchased,
@@ -110,11 +110,11 @@ export async function updateItem(
 	await updateDoc(listItemRef, {
 		// when the user marks an item as purchased, the date is updated to today & 1 is added to number of purchases
 		// when the user unchecks an item to mark it as not purchased, the date is updated to the previous purchased date & 1 is subtracted from number of purchases
-		dateLastPurchased: checked ? prevDateLastPurchased : new Date(),
-		dateNextPurchased: checked
+		dateLastPurchased: wasPurchased ? prevDateLastPurchased : new Date(),
+		dateNextPurchased: wasPurchased
 			? prevDateNextPurchased
 			: getFutureDate(estimateOfDate),
-		totalPurchases: checked ? totalPurchases - 1 : totalPurchases + 1,
+		totalPurchases: wasPurchased ? totalPurchases - 1 : totalPurchases + 1,
 	});
 }
 

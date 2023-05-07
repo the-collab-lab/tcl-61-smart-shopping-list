@@ -30,13 +30,13 @@ export function ListItem({
 		}
 	}, [wasPurchased, prevDateNextPurchased, prevDateLastPurchased]);
 
-	const handleCheck = (checked) => {
+	const handleCheck = (wasPurchased) => {
 		//save previous dateLastPurchased & dateNextPurchased into state to use if the user unchecks an item
 		setPrevDateLastPurchased(dateLastPurchased);
 		setPrevDateNextPurchased(dateNextPurchased);
 
 		updateItem(
-			checked,
+			wasPurchased,
 			listToken,
 			itemId,
 			prevDateLastPurchased,
@@ -56,9 +56,9 @@ export function ListItem({
 				id="wasPurchased"
 				value={name}
 				title="Did you purchase the item?"
-				checked={wasPurchased}
+				wasPurchased={wasPurchased}
 				disabled={disabled}
-				onChange={() => handleCheck(wasPurchased)}
+				onChange={handleCheck}
 			/>
 			{name}
 		</li>
