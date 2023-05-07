@@ -30,13 +30,13 @@ export function ListItem({
 		}
 	}, [wasPurchased, prevDateNextPurchased, prevDateLastPurchased]);
 
-	const handleCheck = (checked) => {
+	const handleCheck = () => {
 		//save previous dateLastPurchased & dateNextPurchased into state to use if the user unchecks an item
 		setPrevDateLastPurchased(dateLastPurchased);
 		setPrevDateNextPurchased(dateNextPurchased);
 
 		updateItem(
-			checked,
+			wasPurchased,
 			listToken,
 			itemId,
 			prevDateLastPurchased,
@@ -48,17 +48,25 @@ export function ListItem({
 		<li className="ListItem">
 			<label
 				htmlFor="wasPurchased"
-				aria-label="Did you purchase the item?"
+				aria-label={
+					disabled
+						? 'Not available for purchase until 24 hours have passed since the previous purchase'
+						: 'Did you purchase the item?'
+				}
 			></label>
 			<input
 				type="checkbox"
 				name="wasPurchased"
 				id="wasPurchased"
 				value={name}
-				title="Did you purchase the item?"
+				title={
+					disabled
+						? 'Not available for purchase until 24 hours have passed since the previous purchase'
+						: 'Did you purchase the item?'
+				}
 				checked={wasPurchased}
 				disabled={disabled}
-				onChange={() => handleCheck(wasPurchased)}
+				onChange={handleCheck}
 			/>
 			{name}
 		</li>
