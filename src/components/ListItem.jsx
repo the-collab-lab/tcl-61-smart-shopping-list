@@ -25,8 +25,10 @@ export function ListItem({
 
 	//disables ability to uncheck item if the item was marked as purchased on page load
 	useEffect(() => {
-		setDisabled(wasPurchased);
-	}, []);
+		if (!prevDateLastPurchased && !prevDateNextPurchased) {
+			setDisabled(wasPurchased);
+		}
+	}, [wasPurchased, prevDateNextPurchased, prevDateLastPurchased]);
 
 	const handleCheck = (checked) => {
 		//save previous dateLastPurchased & dateNextPurchased into state to use if the user unchecks an item
