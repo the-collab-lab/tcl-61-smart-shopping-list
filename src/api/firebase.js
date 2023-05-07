@@ -84,12 +84,12 @@ export async function updateItem(
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 
-	const dateFirstPurchased = listItemSnap.data().dateCreated;
-	const dateNextPurchased = listItemSnap.data().dateNextPurchased;
-	const dateLastPurchased = listItemSnap.data().dateLastPurchased;
+	const { dateCreated, dateNextPurchased, dateLastPurchased, totalPurchases } =
+		listItemSnap.data();
+
 	const lastPurchaseDate = dateLastPurchased
 		? dateLastPurchased.toDate()
-		: dateFirstPurchased.toDate();
+		: dateCreated.toDate();
 	const currentDate = new Date();
 
 	const previousEstimate = numOfDaysBtwnDates(
@@ -100,7 +100,6 @@ export async function updateItem(
 		lastPurchaseDate,
 		currentDate,
 	);
-	const totalPurchases = listItemSnap.data().totalPurchases;
 
 	const estimateOfDate = calculateEstimate(
 		previousEstimate,
