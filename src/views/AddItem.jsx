@@ -2,7 +2,17 @@ import { React, useState } from 'react';
 
 import { addItem } from '../api/firebase';
 
-export function AddItem({ listToken }) {
+// Removes excess spaces, punctuation, special characters, and makes all leters lowercase.
+const normalizeText = (item) => {
+	return item
+		.trim()
+		.split(/ +/)
+		.join(' ')
+		.toLowerCase()
+		.replace(/[^a-z0-9]/gi, '');
+};
+
+export function AddItem({ data, listToken }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 	const [submitStatus, setSubmitStatus] = useState({ type: 'idle', value: '' });
@@ -12,17 +22,46 @@ export function AddItem({ listToken }) {
 		addItemToList();
 	};
 
+	// Checks if user's input item already exists in the database.
+	const checkIfItemExists = (item) => {
+		for (let i = 0; i < data.length; i++) {
+			// Compares normalized db item to the user's normalized input item
+			if (normalizeText(data[i].name) === item) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	const setStatusWithTimeout = (value, delay) => {
+		setSubmitStatus({ type: 'error', value });
+		setTimeout(() => {
+			setSubmitStatus({ type: 'idle', value: '' });
+		}, delay);
+	};
+
 	const addItemToList = async () => {
-		const trimmedItemName = itemName.trim();
+		const normalizedItemName = normalizeText(itemName);
+
 		try {
-			await addItem(listToken, {
-				itemName: trimmedItemName,
-				daysUntilNextPurchase,
-			});
-			setSubmitStatus({
-				type: 'success',
-				value: 'Item was successfully saved to the database',
-			});
+			// Checks if the item is already on the user's list.
+			if (checkIfItemExists(normalizedItemName)) {
+				setStatusWithTimeout('You already added this item to your list.', 3000);
+
+				// Checks if the user is trying to submit an empty item.
+			} else if (normalizedItemName === '') {
+				setStatusWithTimeout('Please enter an item.', 3000);
+			} else {
+				await addItem(listToken, {
+					itemName: itemName,
+					daysUntilNextPurchase,
+				});
+
+				setSubmitStatus({
+					type: 'success',
+					value: 'Item was successfully saved to the database',
+				});
+			}
 		} catch (err) {
 			setSubmitStatus({
 				type: 'error',
@@ -34,7 +73,7 @@ export function AddItem({ listToken }) {
 	};
 
 	const handleNameInput = (e) => {
-		setItemName(e.target.value.split(/ +/).join(' '));
+		setItemName(e.target.value);
 	};
 
 	const handleFrequencyInput = (e) => setDaysUntilNextPurchase(+e.target.value);
