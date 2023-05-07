@@ -8,7 +8,8 @@ import {
 	updateDoc,
 } from 'firebase/firestore';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, numOfDaysBtwnDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
  * Subscribe to changes on a specific list in the Firestore database (listId), and run a callback (handleSuccess) every time a change happens.
@@ -73,15 +74,47 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(checked, listId, itemId) {
+export async function updateItem(
+	wasPurchased,
+	listId,
+	itemId,
+	prevDateLastPurchased,
+	prevDateNextPurchased,
+) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
-	const totalPurchases = listItemSnap.data().totalPurchases;
+
+	const { dateCreated, dateNextPurchased, dateLastPurchased, totalPurchases } =
+		listItemSnap.data();
+
+	const lastPurchaseDate = dateLastPurchased
+		? dateLastPurchased.toDate()
+		: dateCreated.toDate();
+	const currentDate = new Date();
+
+	const previousEstimate = numOfDaysBtwnDates(
+		dateNextPurchased.toDate(),
+		lastPurchaseDate,
+	);
+	const daysSinceLastPurchase = numOfDaysBtwnDates(
+		lastPurchaseDate,
+		currentDate,
+	);
+
+	const estimateOfDate = calculateEstimate(
+		previousEstimate,
+		daysSinceLastPurchase,
+		totalPurchases,
+	);
+
 	await updateDoc(listItemRef, {
-		// when the user marks an item as purchased, the date & number of purchases is updated
-		// if the item is then unchecked, the date last purchased will be updated to null & the total purchases will -1
-		dateLastPurchased: checked ? null : new Date(),
-		totalPurchases: checked ? totalPurchases - 1 : totalPurchases + 1,
+		// when the user marks an item as purchased, the date is updated to today & 1 is added to number of purchases
+		// when the user unchecks an item to mark it as not purchased, the date is updated to the previous purchased date & 1 is subtracted from number of purchases
+		dateLastPurchased: wasPurchased ? prevDateLastPurchased : new Date(),
+		dateNextPurchased: wasPurchased
+			? prevDateNextPurchased
+			: getFutureDate(estimateOfDate),
+		totalPurchases: wasPurchased ? totalPurchases - 1 : totalPurchases + 1,
 	});
 }
 
@@ -92,6 +125,7 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
 export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
 	const existingList = await getDocs(listCollectionRef);

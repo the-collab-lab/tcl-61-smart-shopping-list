@@ -45,6 +45,7 @@ export function List({ data, listToken }) {
 								listToken={listToken}
 								itemId={data.id}
 								dateLastPurchased={data.dateLastPurchased}
+								dateNextPurchased={data.dateNextPurchased}
 							/>
 						);
 					})}

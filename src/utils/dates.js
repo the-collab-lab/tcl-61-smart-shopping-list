@@ -1,4 +1,4 @@
-const ONE_DAY_IN_MILLISECONDS = 86400000;
+export const ONE_DAY_IN_MILLISECONDS = 86400000;
 
 /**
  * Get a new JavaScript Date that is `offset` days in the future.
@@ -9,4 +9,11 @@ const ONE_DAY_IN_MILLISECONDS = 86400000;
  */
 export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
+}
+
+export function numOfDaysBtwnDates(dateOne, dateTwo) {
+	const dateOneMillisec = dateOne.getTime();
+	const dateTwoMillisec = dateTwo.getTime();
+	const difference = Math.abs(dateOneMillisec - dateTwoMillisec);
+	return Math.round(difference / ONE_DAY_IN_MILLISECONDS);
 }
