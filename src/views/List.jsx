@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '../components';
+import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
@@ -14,6 +15,9 @@ export function List({ data, listToken }) {
 			});
 		}
 	}, [data, itemSearch]);
+
+	const sortedData = Promise.resolve(comparePurchaseUrgency(searchedData));
+	console.log(sortedData);
 
 	return data.length > 0 ? (
 		<>
@@ -37,7 +41,7 @@ export function List({ data, listToken }) {
 			</form>
 			<form>
 				<ul>
-					{searchedData.map((data, i) => {
+					{sortedData.map((data, i) => {
 						return (
 							<ListItem
 								key={i}

@@ -131,3 +131,23 @@ export async function checkItem(listId) {
 	const existingList = await getDocs(listCollectionRef);
 	return existingList.empty ? false : true;
 }
+
+export async function comparePurchaseUrgency(data) {
+	const today = new Date();
+	const inactiveList = data.filter(
+		(eachItem) =>
+			eachItem.dateLastPurchased !== null &&
+			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) >= 60,
+	);
+	const activeList = data.filter(
+		(eachItem) =>
+			eachItem.dateLastPurchased === null ||
+			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) < 60,
+	);
+	//activeList
+	//sort them by dates and then sort apphabetically
+	//concat the list together
+	console.log('inactiveList', inactiveList);
+	console.log('activeList', activeList);
+	return activeList.concat(inactiveList);
+}

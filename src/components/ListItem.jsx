@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { updateItem } from '../api/firebase';
-import { ONE_DAY_IN_MILLISECONDS } from '../utils';
+import { ONE_DAY_IN_MILLISECONDS, numOfDaysBtwnDates } from '../utils';
 
 import './ListItem.css';
 
@@ -15,6 +15,7 @@ export function ListItem({
 	const [prevDateLastPurchased, setPrevDateLastPurchased] = useState(null);
 	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 	const [disabled, setDisabled] = useState(false);
+	const [urgency, setUrgency] = useState('');
 
 	const currentDate = new Date().getTime();
 	const dateLastPurchasedPlus24h = dateLastPurchased
@@ -44,6 +45,24 @@ export function ListItem({
 		);
 	};
 
+	//if dateLastPurchased is null (meaning new list item), we will find the difference between NextPurchasedDate and currentDate,
+	//else, we find the difference between lastPurchasedDate and currentDate
+
+	useEffect(() => {
+		let differenceOfDays;
+		const today = new Date();
+		if (dateLastPurchased === null) {
+			differenceOfDays = numOfDaysBtwnDates(today, dateNextPurchased.toDate());
+		} else {
+			differenceOfDays = numOfDaysBtwnDates(dateLastPurchased.toDate(), today);
+		}
+		if (differenceOfDays <= 7) setUrgency('soon');
+		if (differenceOfDays < 30 && differenceOfDays > 7)
+			setUrgency('kind of soon');
+		if (differenceOfDays >= 30) setUrgency('not soon');
+		if (differenceOfDays >= 60) setUrgency('inactive');
+	}, [dateLastPurchased, dateNextPurchased]);
+
 	return (
 		<li className="ListItem">
 			<label
@@ -53,7 +72,9 @@ export function ListItem({
 						? 'Not available for purchase until 24 hours have passed since the previous purchase'
 						: 'Did you purchase the item?'
 				}
-			></label>
+			>
+				{urgency}
+			</label>
 			<input
 				type="checkbox"
 				name="wasPurchased"
