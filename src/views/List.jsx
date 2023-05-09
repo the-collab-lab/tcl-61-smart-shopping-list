@@ -5,6 +5,7 @@ import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
+	const [newList, setNewData] = useState([]);
 
 	const searchedData = useMemo(() => {
 		if (!itemSearch) {
@@ -16,8 +17,15 @@ export function List({ data, listToken }) {
 		}
 	}, [data, itemSearch]);
 
-	const sortedData = Promise.resolve(comparePurchaseUrgency(searchedData));
-	console.log(sortedData);
+	// const sortedData = comparePurchaseUrgency(searchedData);
+	// console.log(sortedData);
+	async function sortFunction() {
+		const sortedData = await comparePurchaseUrgency(searchedData);
+		// Use the sortedData array here
+		setNewData(sortedData);
+	}
+
+	sortFunction();
 
 	return data.length > 0 ? (
 		<>
@@ -41,7 +49,7 @@ export function List({ data, listToken }) {
 			</form>
 			<form>
 				<ul>
-					{sortedData.map((data, i) => {
+					{newList.map((data, i) => {
 						return (
 							<ListItem
 								key={i}

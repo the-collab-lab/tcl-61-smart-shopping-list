@@ -145,9 +145,6 @@ export async function comparePurchaseUrgency(data) {
 			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) < 60,
 	);
 	//activeList
-	//sort them by dates and then sort apphabetically
-	//concat the list together
-	console.log('inactiveList', inactiveList);
-	console.log('activeList', activeList);
+	//sort them by dates and then sort alphabetically
 	return activeList.concat(inactiveList);
 }
