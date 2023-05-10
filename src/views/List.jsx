@@ -6,6 +6,7 @@ import { comparePurchaseUrgency } from '../api';
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
 	const [newList, setNewData] = useState([]);
+	const [sortErrorMessage, setSortErrorMessage] = useState('');
 
 	const searchedData = useMemo(() => {
 		if (!itemSearch) {
@@ -23,7 +24,7 @@ export function List({ data, listToken }) {
 			try {
 				setNewData(sortedData);
 			} catch (e) {
-				console.log('error sorting function: ', e);
+				setSortErrorMessage('There was an error sorting your list');
 			}
 		}
 
@@ -66,6 +67,7 @@ export function List({ data, listToken }) {
 					})}
 				</ul>
 			</form>
+			{sortErrorMessage && <p> {sortErrorMessage} </p>}
 		</>
 	) : (
 		<div>
