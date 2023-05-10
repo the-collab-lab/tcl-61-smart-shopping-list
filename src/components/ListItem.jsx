@@ -12,10 +12,33 @@ export function ListItem({
 	dateLastPurchased,
 	dateNextPurchased,
 }) {
+	// useEffect not needed to set state for the urgency value bc we have immediate access to data from props (component is assumed to have the props when rendered via .map in List.jsx)
+	// Instead, the urgency value can be determined directly within the ListItem component using the data from props and the logic to determine the urgency.
+
+	const itemUrgency = () => {
+		const today = new Date();
+		const differenceOfDays = numOfDaysBtwnDates(
+			today,
+			dateNextPurchased.toDate(),
+		);
+
+		if (
+			dateLastPurchased !== null &&
+			numOfDaysBtwnDates(dateLastPurchased.toDate(), today) >= 60
+		)
+			return 'inactive';
+		else if (differenceOfDays <= 7) {
+			return 'soon';
+		} else if (differenceOfDays < 30) {
+			return 'kind of soon';
+		} else {
+			return 'not soon';
+		}
+	};
+
 	const [prevDateLastPurchased, setPrevDateLastPurchased] = useState(null);
 	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 	const [disabled, setDisabled] = useState(false);
-	const [urgency, setUrgency] = useState('');
 
 	const currentDate = new Date().getTime();
 	const dateLastPurchasedPlus24h = dateLastPurchased
@@ -45,28 +68,6 @@ export function ListItem({
 		);
 	};
 
-	useEffect(() => {
-		const today = new Date();
-		const differenceOfDays = numOfDaysBtwnDates(
-			today,
-			dateNextPurchased.toDate(),
-		);
-
-		if (differenceOfDays <= 7) {
-			setUrgency('soon');
-		} else if (differenceOfDays < 30) {
-			setUrgency('kind of soon');
-		} else {
-			setUrgency('not soon');
-		}
-
-		if (
-			dateLastPurchased !== null &&
-			numOfDaysBtwnDates(dateLastPurchased.toDate(), today) >= 60
-		)
-			setUrgency('inactive');
-	}, [dateLastPurchased, dateNextPurchased]);
-
 	return (
 		<li className="ListItem">
 			<label
@@ -76,9 +77,7 @@ export function ListItem({
 						? 'Not available for purchase until 24 hours have passed since the previous purchase'
 						: 'Did you purchase the item?'
 				}
-			>
-				{urgency}
-			</label>
+			></label>
 			<input
 				type="checkbox"
 				name="wasPurchased"
@@ -93,7 +92,7 @@ export function ListItem({
 				disabled={disabled}
 				onChange={handleCheck}
 			/>
-			{name}
+			{name} ({itemUrgency()})
 		</li>
 	);
 }

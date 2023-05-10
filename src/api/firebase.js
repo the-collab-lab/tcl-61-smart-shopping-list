@@ -134,23 +134,24 @@ export async function checkItem(listId) {
 
 export async function comparePurchaseUrgency(data) {
 	const today = new Date();
-	const inactiveList = data.filter(
-		(eachItem) =>
-			eachItem.dateLastPurchased !== null &&
-			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) >= 60,
+	const inactiveList = [];
+	const activeList = [];
+	data.map((item) => {
+		if (
+			item.dateLastPurchased !== null &&
+			numOfDaysBtwnDates(item.dateLastPurchased.toDate(), today) >= 60
+		) {
+			inactiveList.push(item);
+		} else if (
+			item.dateLastPurchased === null ||
+			numOfDaysBtwnDates(item.dateLastPurchased.toDate(), today) < 60
+		) {
+			activeList.push(item);
+		}
+	});
+	return sortByUrgencyAndName(activeList).concat(
+		sortByUrgencyAndName(inactiveList),
 	);
-
-	sortByUrgencyAndName(inactiveList);
-
-	const activeList = data.filter(
-		(eachItem) =>
-			eachItem.dateLastPurchased === null ||
-			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) < 60,
-	);
-
-	sortByUrgencyAndName(activeList);
-
-	return activeList.concat(inactiveList);
 }
 
 const sortByUrgencyAndName = (list) => {
