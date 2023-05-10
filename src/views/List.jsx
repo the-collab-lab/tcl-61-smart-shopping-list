@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '../components';
 import { comparePurchaseUrgency } from '../api';
@@ -17,15 +17,18 @@ export function List({ data, listToken }) {
 		}
 	}, [data, itemSearch]);
 
-	// const sortedData = comparePurchaseUrgency(searchedData);
-	// console.log(sortedData);
-	async function sortFunction() {
-		const sortedData = await comparePurchaseUrgency(searchedData);
-		// Use the sortedData array here
-		setNewData(sortedData);
-	}
+	useEffect(() => {
+		async function sortShoppingList() {
+			const sortedData = await comparePurchaseUrgency(searchedData);
+			try {
+				setNewData(sortedData);
+			} catch (e) {
+				console.log('error sorting function: ', e);
+			}
+		}
 
-	sortFunction();
+		sortShoppingList();
+	}, [searchedData]);
 
 	return data.length > 0 ? (
 		<>

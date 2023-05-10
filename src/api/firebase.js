@@ -139,12 +139,28 @@ export async function comparePurchaseUrgency(data) {
 			eachItem.dateLastPurchased !== null &&
 			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) >= 60,
 	);
+
+	sortByUrgencyAndName(inactiveList);
+
 	const activeList = data.filter(
 		(eachItem) =>
 			eachItem.dateLastPurchased === null ||
 			numOfDaysBtwnDates(eachItem.dateLastPurchased.toDate(), today) < 60,
 	);
-	//activeList
-	//sort them by dates and then sort alphabetically
+
+	sortByUrgencyAndName(activeList);
+
 	return activeList.concat(inactiveList);
 }
+
+const sortByUrgencyAndName = (list) => {
+	const today = new Date();
+
+	return list.sort((firstItem, secondItem) => {
+		let a = numOfDaysBtwnDates(firstItem.dateNextPurchased.toDate(), today);
+		let b = numOfDaysBtwnDates(secondItem.dateNextPurchased.toDate(), today);
+		if (a > b) return 1;
+		if (a < b) return -1;
+		return firstItem.name.localeCompare(secondItem.name);
+	});
+};

@@ -45,22 +45,26 @@ export function ListItem({
 		);
 	};
 
-	//if dateLastPurchased is null (meaning new list item), we will find the difference between NextPurchasedDate and currentDate,
-	//else, we find the difference between lastPurchasedDate and currentDate
-
 	useEffect(() => {
-		let differenceOfDays;
 		const today = new Date();
-		if (dateLastPurchased === null) {
-			differenceOfDays = numOfDaysBtwnDates(today, dateNextPurchased.toDate());
-		} else {
-			differenceOfDays = numOfDaysBtwnDates(dateLastPurchased.toDate(), today);
-		}
-		if (differenceOfDays <= 7) setUrgency('soon');
-		if (differenceOfDays < 30 && differenceOfDays > 7)
+		const differenceOfDays = numOfDaysBtwnDates(
+			today,
+			dateNextPurchased.toDate(),
+		);
+
+		if (differenceOfDays <= 7) {
+			setUrgency('soon');
+		} else if (differenceOfDays < 30) {
 			setUrgency('kind of soon');
-		if (differenceOfDays >= 30) setUrgency('not soon');
-		if (differenceOfDays >= 60) setUrgency('inactive');
+		} else {
+			setUrgency('not soon');
+		}
+
+		if (
+			dateLastPurchased !== null &&
+			numOfDaysBtwnDates(dateLastPurchased.toDate(), today) >= 60
+		)
+			setUrgency('inactive');
 	}, [dateLastPurchased, dateNextPurchased]);
 
 	return (
