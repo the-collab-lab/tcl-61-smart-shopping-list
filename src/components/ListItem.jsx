@@ -46,7 +46,7 @@ export function ListItem({
 
 	const handleDelete = (e) => {
 		e.preventDefault();
-		if (window.confirm('Are you sure you want to delete this item?')) {
+		if (window.confirm(`Are you sure you want to delete ${name}?`)) {
 			deleteItem(listToken, itemId);
 		}
 	};
