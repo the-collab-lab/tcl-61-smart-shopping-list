@@ -6,6 +6,7 @@ import {
 	getDocs,
 	getDoc,
 	updateDoc,
+	deleteDoc,
 } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate, numOfDaysBtwnDates } from '../utils';
@@ -118,12 +119,8 @@ export async function updateItem(
 	});
 }
 
-export async function deleteItem() {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to delete an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
+export async function deleteItem(listId, itemId) {
+	await deleteDoc(doc(db, listId, itemId));
 }
 
 export async function checkItem(listId) {
