@@ -92,7 +92,7 @@ export function ListItem({
 				disabled={disabled}
 				onChange={handleCheck}
 			/>
-			{name} ({itemUrgency()})
+			{name} {wasPurchased ? null : `(${itemUrgency()})`}
 		</li>
 	);
 }
