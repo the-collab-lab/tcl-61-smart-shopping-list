@@ -56,7 +56,7 @@ export function List({ data, listToken }) {
 					{newData.map((data, i) => {
 						return (
 							<ListItem
-								key={i}
+								key={data.id}
 								name={data.name}
 								listToken={listToken}
 								itemId={data.id}

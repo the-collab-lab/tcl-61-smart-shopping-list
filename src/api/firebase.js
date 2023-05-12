@@ -136,7 +136,7 @@ export async function comparePurchaseUrgency(data) {
 	const today = new Date();
 	const inactiveList = [];
 	const activeList = [];
-	data.map((item) => {
+	data.forEach((item) => {
 		if (
 			item.dateLastPurchased !== null &&
 			numOfDaysBtwnDates(item.dateLastPurchased.toDate(), today) >= 60
