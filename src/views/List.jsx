@@ -5,7 +5,7 @@ import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
-	const [newList, setNewData] = useState([]);
+	const [newData, setNewData] = useState([]);
 	const [sortErrorMessage, setSortErrorMessage] = useState('');
 
 	const searchedData = useMemo(() => {
@@ -53,7 +53,7 @@ export function List({ data, listToken }) {
 			</form>
 			<form>
 				<ul>
-					{newList.map((data, i) => {
+					{newData.map((data, i) => {
 						return (
 							<ListItem
 								key={i}
