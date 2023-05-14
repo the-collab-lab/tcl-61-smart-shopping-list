@@ -128,3 +128,37 @@ export async function checkItem(listId) {
 	const existingList = await getDocs(listCollectionRef);
 	return existingList.empty ? false : true;
 }
+
+export async function comparePurchaseUrgency(data) {
+	const today = new Date();
+	const inactiveList = [];
+	const activeList = [];
+	data.forEach((item) => {
+		if (
+			item.dateLastPurchased !== null &&
+			numOfDaysBtwnDates(item.dateLastPurchased.toDate(), today) >= 60
+		) {
+			inactiveList.push(item);
+		} else if (
+			item.dateLastPurchased === null ||
+			numOfDaysBtwnDates(item.dateLastPurchased.toDate(), today) < 60
+		) {
+			activeList.push(item);
+		}
+	});
+	return sortByUrgencyAndName(activeList).concat(
+		sortByUrgencyAndName(inactiveList),
+	);
+}
+
+const sortByUrgencyAndName = (list) => {
+	const today = new Date();
+
+	return list.sort((firstItem, secondItem) => {
+		let a = numOfDaysBtwnDates(firstItem.dateNextPurchased.toDate(), today);
+		let b = numOfDaysBtwnDates(secondItem.dateNextPurchased.toDate(), today);
+		if (a > b) return 1;
+		if (a < b) return -1;
+		return firstItem.name.localeCompare(secondItem.name);
+	});
+};

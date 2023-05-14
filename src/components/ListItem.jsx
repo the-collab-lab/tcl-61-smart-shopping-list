@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-
+import { ONE_DAY_IN_MILLISECONDS, numOfDaysBtwnDates } from '../utils';
 import { updateItem, deleteItem } from '../api/firebase';
-import { ONE_DAY_IN_MILLISECONDS } from '../utils';
-
 import './ListItem.css';
 
 export function ListItem({
@@ -12,6 +10,30 @@ export function ListItem({
 	dateLastPurchased,
 	dateNextPurchased,
 }) {
+	// useEffect not needed to set state for the urgency value bc we have immediate access to data from props (component is assumed to have the props when rendered via .map in List.jsx)
+	// Instead, the urgency value can be determined directly within the ListItem component using the data from props and the logic to determine the urgency.
+
+	const itemUrgency = () => {
+		const today = new Date();
+		const differenceOfDays = numOfDaysBtwnDates(
+			today,
+			dateNextPurchased.toDate(),
+		);
+
+		if (
+			dateLastPurchased !== null &&
+			numOfDaysBtwnDates(dateLastPurchased.toDate(), today) >= 60
+		)
+			return 'inactive';
+		else if (differenceOfDays <= 7) {
+			return 'soon';
+		} else if (differenceOfDays < 30) {
+			return 'kind of soon';
+		} else {
+			return 'not soon';
+		}
+	};
+
 	const [prevDateLastPurchased, setPrevDateLastPurchased] = useState(null);
 	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 	const [disabled, setDisabled] = useState(false);
@@ -75,7 +97,7 @@ export function ListItem({
 				disabled={disabled}
 				onChange={handleCheck}
 			/>
-			{name}
+			{name} {wasPurchased ? null : `(${itemUrgency()})`}
 			<button
 				onClick={(e) => {
 					handleDelete(e);

@@ -1,9 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '../components';
+import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
+	const [newData, setNewData] = useState([]);
+	const [sortErrorMessage, setSortErrorMessage] = useState('');
 
 	const searchedData = useMemo(() => {
 		if (!itemSearch) {
@@ -14,6 +17,19 @@ export function List({ data, listToken }) {
 			});
 		}
 	}, [data, itemSearch]);
+
+	useEffect(() => {
+		async function sortShoppingList() {
+			const sortedData = await comparePurchaseUrgency(searchedData);
+			try {
+				setNewData(sortedData);
+			} catch (e) {
+				setSortErrorMessage('There was an error sorting your list');
+			}
+		}
+
+		sortShoppingList();
+	}, [searchedData]);
 
 	return data.length > 0 ? (
 		<>
@@ -37,10 +53,10 @@ export function List({ data, listToken }) {
 			</form>
 			<form>
 				<ul>
-					{searchedData.map((data, i) => {
+					{newData.map((data, i) => {
 						return (
 							<ListItem
-								key={i}
+								key={data.id}
 								name={data.name}
 								listToken={listToken}
 								itemId={data.id}
@@ -51,6 +67,7 @@ export function List({ data, listToken }) {
 					})}
 				</ul>
 			</form>
+			{sortErrorMessage && <p> {sortErrorMessage} </p>}
 		</>
 	) : (
 		<div>
