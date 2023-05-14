@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-
-import { updateItem } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS, numOfDaysBtwnDates } from '../utils';
-
+import { updateItem, deleteItem } from '../api/firebase';
 import './ListItem.css';
 
 export function ListItem({
@@ -68,6 +66,13 @@ export function ListItem({
 		);
 	};
 
+	const handleDelete = (e) => {
+		e.preventDefault();
+		if (window.confirm(`Are you sure you want to delete ${name}?`)) {
+			deleteItem(listToken, itemId);
+		}
+	};
+
 	return (
 		<li className="ListItem">
 			<label
@@ -93,6 +98,13 @@ export function ListItem({
 				onChange={handleCheck}
 			/>
 			{name} {wasPurchased ? null : `(${itemUrgency()})`}
+			<button
+				onClick={(e) => {
+					handleDelete(e);
+				}}
+			>
+				Delete
+			</button>
 		</li>
 	);
 }
