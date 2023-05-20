@@ -24,7 +24,7 @@ export function Layout() {
 					</main>
 					<footer>
 						Created by <a href="https://github.com/hansontram">Hanson Tram</a>,{' '}
-						<a href="https://github.com/lizzypine">Lizzie Pine</a>,{' '}
+						<a href="https://github.com/lizzypine">Lizzy Pine</a>,{' '}
 						<a href="https://github.com/itsoliviasparks">Olivia Sparks</a>,{' '}
 						<a href="https://github.com/01001101CK">Yufa Li</a> & for{' '}
 						<a href="https://the-collab-lab.codes">The Collab Lab</a>.{' '}
