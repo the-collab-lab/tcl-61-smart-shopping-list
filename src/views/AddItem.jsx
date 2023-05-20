@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 
 import { addItem } from '../api/firebase';
 
-// Removes excess spaces, punctuation, special characters, and makes all leters lowercase.
+// Removes excess spaces, punctuation, special characters, and makes all letters lowercase.
 const normalizeText = (item) => {
 	return item
 		.trim()

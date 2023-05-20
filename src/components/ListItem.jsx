@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ONE_DAY_IN_MILLISECONDS, numOfDaysBtwnDates } from '../utils';
 import { updateItem, deleteItem } from '../api/firebase';
-import './ListItem.css';
 
 export function ListItem({
 	name,
@@ -10,9 +9,6 @@ export function ListItem({
 	dateLastPurchased,
 	dateNextPurchased,
 }) {
-	// useEffect not needed to set state for the urgency value bc we have immediate access to data from props (component is assumed to have the props when rendered via .map in List.jsx)
-	// Instead, the urgency value can be determined directly within the ListItem component using the data from props and the logic to determine the urgency.
-
 	const itemUrgency = () => {
 		const today = new Date();
 		const differenceOfDays = numOfDaysBtwnDates(
