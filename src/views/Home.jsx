@@ -1,4 +1,3 @@
-import './Home.css';
 import { useState } from 'react';
 import { checkItem } from '../api';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
@@ -31,6 +30,7 @@ export function Home({ setListToken }) {
 
 	return (
 		<div className="Home">
+			<h2>Join a List:</h2>
 			<button onClick={handleClick} className="createListBtn">
 				Create a new list
 			</button>

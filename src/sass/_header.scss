@@ -1,0 +1,49 @@
+@use '_variables.scss' as *;
+
+header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 25vh;
+}
+
+nav {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.Nav-link {
+	font-family: $pop-font;
+	background-color: $purple;
+	padding: 3px 20px;
+	border-radius: 10px;
+	margin: 20px;
+	margin-bottom: 0;
+	font-size: 2.5rem;
+	line-height: 3rem;
+	text-decoration: none;
+	color: $light-green;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&:hover,
+	&:focus {
+		background-color: $yellow;
+		color: $brown;
+	}
+}
+
+.Nav-link.special {
+	background-color: $red-light;
+	border-radius: 50%;
+	font-size: 4.5rem;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: $red-light;
+	&:hover,
+	&:focus {
+		background-color: $yellow;
+		-webkit-text-stroke-color: $yellow;
+	}
+}

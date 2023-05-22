@@ -1,0 +1,37 @@
+@use '_variables.scss' as *;
+
+@media (prefers-color-scheme: dark) {
+	html {
+		background-color: $brown;
+		color: $dark-yellow;
+	}
+	.wrapper {
+		background-color: $dark-purple;
+	}
+	h1 {
+		color: $teal;
+	}
+	label {
+		color: $pop-purple;
+	}
+	.Nav-link {
+		background-color: $teal;
+		color: $brown;
+		&:hover,
+		&:focus {
+			background-color: $yellow;
+			color: $brown;
+		}
+	}
+
+	.Nav-link.special {
+		color: $brown;
+		background-color: $dark-yellow;
+		-webkit-text-stroke-color: $dark-yellow;
+		&:hover,
+		&:focus {
+			background-color: $yellow;
+			-webkit-text-stroke-color: $yellow;
+		}
+	}
+}

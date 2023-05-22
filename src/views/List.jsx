@@ -32,7 +32,7 @@ export function List({ data, listToken }) {
 	}, [searchedData]);
 
 	return data.length > 0 ? (
-		<>
+		<div>
 			<form>
 				<label htmlFor="itemSearch">Search your shopping list:</label>
 				<input
@@ -68,7 +68,7 @@ export function List({ data, listToken }) {
 				</ul>
 			</form>
 			{sortErrorMessage && <p> {sortErrorMessage} </p>}
-		</>
+		</div>
 	) : (
 		<div>
 			<p>

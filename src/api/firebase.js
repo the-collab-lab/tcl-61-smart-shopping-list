@@ -38,16 +38,7 @@ export function getItemData(snapshot) {
 	 * @see https://firebase.google.com/docs/reference/js/firestore_.documentsnapshot
 	 */
 	return snapshot.docs.map((docRef) => {
-		/**
-		 * We call the `.data()` method to get the data
-		 * out of the referenced document
-		 */
 		const data = docRef.data();
-
-		/**
-		 * The document's ID is not part of the data, but it's very useful
-		 * so we get it from the document reference.
-		 */
 		data.id = docRef.id;
 
 		return data;
@@ -63,11 +54,8 @@ export function getItemData(snapshot) {
  */
 export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	const listCollectionRef = collection(db, listId);
-	// adds new List Time to the user's database
 	return addDoc(listCollectionRef, {
 		dateCreated: new Date(),
-		// NOTE: This is null because the item has just been created.
-		// We'll use updateItem to put a Date here when the item is purchased!
 		dateLastPurchased: null,
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
