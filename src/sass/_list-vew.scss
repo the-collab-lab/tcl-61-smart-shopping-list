@@ -1,0 +1,63 @@
+@use '_variables.scss' as *;
+
+.list-container {
+	display: grid;
+	place-items: center;
+	.first-line {
+		font-family: $title-font;
+		color: $light-green;
+		font-weight: 400;
+		font-size: 60px;
+		line-height: 72px;
+		text-align: center;
+	}
+	.second-line {
+		font-family: $header-font;
+		font-style: normal;
+		font-weight: 400px;
+		font-size: 40px;
+		line-height: 60px;
+		text-align: center;
+		color: #ff404a;
+	}
+
+	.add-button {
+		transition: 0.5s ease-out;
+		width: 153px;
+		height: 114px;
+		left: 643px;
+		top: 732px;
+		background: $yellow;
+		border-radius: 40px;
+		font-family: $header-font;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 30px;
+		line-height: 36px;
+		text-align: center;
+		color: $brown;
+	}
+
+	.add-button:hover {
+		cursor: pointer;
+		transform: rotate(-360deg);
+	}
+
+	.add-button:active {
+		transform: scale(0.85);
+	}
+
+	.add-button {
+		animation: shadow-drop-right 0.4s linear both;
+	}
+
+	@keyframes shadow-drop-right {
+		0% {
+			box-shadow: 0 0 0 0 transparent;
+		}
+
+		100% {
+			box-shadow: 12px 0 20px 0 $purple;
+		}
+	}
+}

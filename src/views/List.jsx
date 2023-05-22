@@ -70,12 +70,11 @@ export function List({ data, listToken }) {
 			{sortErrorMessage && <p> {sortErrorMessage} </p>}
 		</div>
 	) : (
-		<div>
-			<p>
-				Welcome to your shopping list. Your Shopping List is currently empty!
-			</p>
+		<div className="list-container">
+			<p className="first-line">THIS IS WHAT YOU NEED TO BUY: </p>
+			<p className="second-line">YOUR LIST IS CURRENTLY EMPTY!</p>
 			<Link to={'/add-item'}>
-				<button>Add Item</button>
+				<button className="add-button">ADD TO LIST</button>
 			</Link>
 		</div>
 	);
