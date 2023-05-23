@@ -81,7 +81,7 @@ export function List({ data, listToken }) {
 				)}
 			</form>
 			<form>
-				<ul>
+				<ul className="item-list">
 					{newData.map((data, i) => {
 						return (
 							<ListItem

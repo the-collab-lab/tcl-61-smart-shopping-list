@@ -95,11 +95,14 @@ export function ListItem({
 					onChange={handleCheck}
 				/>
 			</label>
-			{name} {wasPurchased ? null : `(${itemUrgency()})`}
+			<span>
+				{name} {wasPurchased ? null : `(${itemUrgency()})`}
+			</span>
 			<button
 				onClick={(e) => {
 					handleDelete(e);
 				}}
+				className="delete-button"
 			>
 				<svg
 					style={{ color: 'red' }}
