@@ -61,3 +61,57 @@
 		}
 	}
 }
+
+//list search view (with token) list.js
+
+.item-list-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.item-list-container form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.item-list-container form label {
+	font-family: $header-font;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 30px;
+	line-height: 36px;
+	text-align: center;
+	margin-bottom: 1em;
+	color: $light-green;
+}
+
+.item-list-container form input[type='text'] {
+	margin-bottom: 2em;
+	background: #fff;
+	padding: 1.5em;
+	width: 80%;
+	border-radius: 10em;
+	transition: box-shadow 300ms ease;
+	color: $brown;
+	font-family: $header-font;
+	font-size: 1.5em;
+}
+
+.item-list-container ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-gap: 5em;
+	list-style: none;
+	padding: 0;
+}
+
+.item-list-container ul li {
+	text-decoration: underline;
+	color: #e5f4d3;
+	font-size: 3em;
+}
+
+//ListItem.jsx
