@@ -48,29 +48,6 @@
 			content: url('/img/after.svg');
 		}
 	}
-
-	// .add-button:hover {
-	// 	cursor: pointer;
-	// 	transform: rotate(-360deg);
-	// }
-
-	// .add-button:active {
-	// 	transform: scale(0.85);
-	// }
-
-	// .add-button {
-	// 	animation: shadow-drop-right 0.4s linear both;
-	// }
-
-	// @keyframes shadow-drop-right {
-	// 	0% {
-	// 		box-shadow: 0 0 0 0 transparent;
-	// 	}
-
-	// 	100% {
-	// 		box-shadow: 12px 0 20px 0 $purple;
-	// 	}
-	// }
 }
 
 //list search view (with token) list.js
@@ -186,4 +163,21 @@ input[type='checkbox']:disabled {
 	--form-control-color: $red-dark;
 	color: var(--form-control-disabled);
 	cursor: not-allowed;
+}
+
+.item-urgency {
+	position: relative;
+	width: fit-content;
+	border-radius: 0 15px 15px 0;
+	background-color: $yellow;
+	transform-origin: top right;
+
+	h3 {
+		margin: 0;
+		padding: 5px 15px 5px 47px;
+		font-size: 2.2rem;
+		font-family: $pop-font;
+		color: $brown;
+		text-align: center;
+	}
 }

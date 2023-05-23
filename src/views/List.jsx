@@ -87,6 +87,7 @@ export function List({ data, listToken }) {
 							<ListItem
 								key={data.id}
 								name={data.name}
+								nameArray={newData}
 								listToken={listToken}
 								itemId={data.id}
 								dateLastPurchased={data.dateLastPurchased}
