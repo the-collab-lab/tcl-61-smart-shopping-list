@@ -4,7 +4,7 @@
 	display: grid;
 	place-items: center;
 	.first-line {
-		font-family: $title-font;
+		font-family: $header-font;
 		color: $light-green;
 		font-weight: 400;
 		font-size: 60px;
@@ -12,7 +12,7 @@
 		text-align: center;
 	}
 	.second-line {
-		font-family: $header-font;
+		font-family: $body-font;
 		font-style: normal;
 		font-weight: 400px;
 		font-size: 40px;
@@ -22,11 +22,10 @@
 	}
 
 	.add-button {
+		position: relative;
 		transition: 0.5s ease-out;
 		width: 153px;
 		height: 114px;
-		left: 643px;
-		top: 732px;
 		background: $yellow;
 		border-radius: 40px;
 		font-family: $header-font;
@@ -36,30 +35,42 @@
 		line-height: 36px;
 		text-align: center;
 		color: $brown;
-	}
-
-	.add-button:hover {
-		cursor: pointer;
-		transform: rotate(-360deg);
-	}
-
-	.add-button:active {
-		transform: scale(0.85);
-	}
-
-	.add-button {
-		animation: shadow-drop-right 0.4s linear both;
-	}
-
-	@keyframes shadow-drop-right {
-		0% {
-			box-shadow: 0 0 0 0 transparent;
+		&::before {
+			position: absolute;
+			bottom: -37px;
+			left: -36px;
+			content: url('/img/before.svg');
 		}
-
-		100% {
-			box-shadow: 12px 0 20px 0 $purple;
+		&::after {
+			position: absolute;
+			top: -9px;
+			right: -38px;
+			content: url('/img/after.svg');
 		}
 	}
+
+	// .add-button:hover {
+	// 	cursor: pointer;
+	// 	transform: rotate(-360deg);
+	// }
+
+	// .add-button:active {
+	// 	transform: scale(0.85);
+	// }
+
+	// .add-button {
+	// 	animation: shadow-drop-right 0.4s linear both;
+	// }
+
+	// @keyframes shadow-drop-right {
+	// 	0% {
+	// 		box-shadow: 0 0 0 0 transparent;
+	// 	}
+
+	// 	100% {
+	// 		box-shadow: 12px 0 20px 0 $purple;
+	// 	}
+	// }
 }
 
 //list search view (with token) list.js
