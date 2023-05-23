@@ -71,9 +71,8 @@ export function List({ data, listToken }) {
 		</div>
 	) : (
 		<div>
-			<p>
-				Welcome to your shopping list. Your Shopping List is currently empty!
-			</p>
+			<p>Welcome to your shopping list.</p>
+			<p>Your Shopping List is currently empty!</p>
 			<Link to={'/add-item'}>
 				<button>Add Item</button>
 			</Link>
