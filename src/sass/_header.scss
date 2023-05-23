@@ -7,23 +7,16 @@ header {
 	align-items: center;
 	height: 25vh;
 }
-h1:after {
-	position: absolute;
-	top: 52px;
-	right: 162px;
-	content: url('../../public/img/star1.svg');
-}
 
 nav {
 	width: 50%;
-	max-width: 400px;
+	max-width: 420px;
 	display: flex;
 	height: 70px;
 
 	justify-content: space-around;
 	align-items: flex-end;
-	margin-top: 8px;
-	border: 1px solid red;
+	margin-top: 5px;
 }
 
 .Nav-link {
@@ -67,3 +60,82 @@ nav {
 		font-size: 4rem;
 	}
 }
+
+.title-container {
+	display: flex;
+}
+
+.star-right {
+	position: relative;
+	top: 23px;
+	left: -18px;
+	transform: scale(0.6);
+}
+
+.star-top {
+	position: relative;
+	top: -50px;
+	left: 68px;
+	transform: scale(0.6);
+}
+.star-left {
+	position: relative;
+	top: -2px;
+	right: -4px;
+	transform: scale(0.7);
+}
+
+.lines-before {
+	position: relative;
+	bottom: -8px;
+	right: -26px;
+	transform: scale(0.6);
+}
+.lines-after {
+	position: relative;
+	bottom: 22px;
+	right: 8px;
+	transform: scale(0.6);
+}
+
+// METHOD 2: cannot adjust size, responsiveness seems better
+
+// h1::after {
+// 	position: relative;
+// 	top: 40px;
+// 	left: -10px;
+// 	// transform: scale(.8);
+// 	content: url('/img/star1.svg');
+// }
+
+// h1::before {
+// 	position: relative;
+// 	top: -50px;
+// 	left: 40px;
+// 	// transform: scale(.5);
+// 	content: url('/img/star4.svg');
+// }
+// .title-container::before{
+
+// 		position: relative;
+// 		top: 25px;
+// 		left: 55px;
+// 		transform: scale(.8);
+// 		content: url('/img/star3.svg');
+
+// }
+
+// .Nav-link.special::after{
+// 	position: relative;
+// 	bottom: 60px;
+// 	left: 65px;
+// 	transform: scale(.6);
+// 	content: url('/img/lines-after.svg');
+// }
+// .Nav-link.special::before{
+// 	position: relative;
+// 	top: 85px;
+// 	right: 55px;
+// 	transform: scale(.6);
+// 	content: url('/img/lines-before.svg');
+// }
