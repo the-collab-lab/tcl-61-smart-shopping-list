@@ -11,7 +11,8 @@ export function Layout() {
 							Home
 						</NavLink>
 						<NavLink to="/list" className="Nav-link special">
-							Your List
+							<span className="top">Your</span>{' '}
+							<span className="bottom">List</span>
 						</NavLink>
 						<NavLink to="/add-item" className="Nav-link">
 							Add Item
