@@ -4,7 +4,7 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function Home({ setListToken }) {
 	const [tokenInput, setTokenInput] = useState('');
-	const [isError, setIsError] = useState(false);
+	const [submitStatus, setSubmitStatus] = useState({ type: 'idle', value: '' });
 
 	const handleClick = () => {
 		const newToken = generateToken();
@@ -19,39 +19,58 @@ export function Home({ setListToken }) {
 				if (shoppingList) {
 					setListToken(modifiedInput);
 				} else {
-					setIsError(true);
+					setStatusWithTimeout('This token does not exist!', 3000);
 				}
 			})
-			.catch((error) => {
-				setIsError(true);
+			.catch(() => {
+				setStatusWithTimeout(
+					'There was an error accessing your list. Please try again.',
+					3000,
+				);
 			});
 		setTokenInput('');
 	};
 
+	const setStatusWithTimeout = (value, delay) => {
+		setSubmitStatus({ type: 'error', value });
+		setTimeout(() => {
+			setSubmitStatus({ type: 'idle', value: '' });
+		}, delay);
+	};
+
 	return (
 		<div className="Home">
+			<div className="test">
+				<div className="bg"></div>
+			</div>
+
 			<h2>Join a List:</h2>
+			<div className="option">
+				<h3>Option #1</h3>
+			</div>
+			<form onSubmit={handleTokenSubmit}>
+				<div className="input">
+					<label htmlFor="join-list">Enter a three word token:</label>
+					<input
+						type="text"
+						onChange={(e) => setTokenInput(e.target.value)}
+						value={tokenInput}
+						name="join-list"
+						id="join-list"
+					/>
+				</div>
+				<button type="submit" disabled={!tokenInput}>
+					Join
+				</button>
+			</form>
+			{/* {isError ? <p>This token does not exist!</p> : null} */}
+			<p>{submitStatus.value}</p>
+			<div className="option right">
+				<h3>Option #2</h3>
+			</div>
 			<button onClick={handleClick} className="createListBtn">
 				Create a new list
 			</button>
-
-			<form onSubmit={handleTokenSubmit}>
-				<label htmlFor="join-list">
-					Enter a three word token to join existing shopping list
-				</label>
-				<input
-					type="text"
-					onChange={(e) => setTokenInput(e.target.value)}
-					value={tokenInput}
-					name="join-list"
-					id="join-list"
-				/>
-
-				<button type="submit" disabled={!tokenInput}>
-					Join Shopping List
-				</button>
-			</form>
-			{isError ? <p>This token does not exist!</p> : null}
 		</div>
 	);
 }

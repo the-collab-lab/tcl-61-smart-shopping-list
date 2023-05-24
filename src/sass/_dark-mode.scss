@@ -1,6 +1,7 @@
 @use '_variables.scss' as *;
 
 @media (prefers-color-scheme: dark) {
+	//fonts & general styles
 	html {
 		background-color: $brown;
 		color: $dark-yellow;
@@ -11,27 +12,50 @@
 	h1 {
 		color: $teal;
 	}
+	.option h3 {
+		color: $dark-purple;
+	}
 	label {
 		color: $pop-purple;
 	}
+	input {
+		border: 3px solid $pop-purple;
+		background-color: $dark-yellow;
+		color: $pop-purple;
+	}
+	//nav bar
 	.Nav-link {
 		background-color: $teal;
+		border-color: $teal;
 		color: $brown;
 		&:hover,
 		&:focus {
-			background-color: $yellow;
-			color: $brown;
+			background-color: $brown;
+			color: $teal;
 		}
 	}
-
 	.Nav-link.special {
 		color: $brown;
-		background-color: $dark-yellow;
-		-webkit-text-stroke-color: $dark-yellow;
+		background-color: $pop-purple;
+		border: 3px solid $pop-purple;
+		-webkit-text-stroke-color: $pop-purple;
 		&:hover,
 		&:focus {
-			background-color: $yellow;
-			-webkit-text-stroke-color: $yellow;
+			color: $pop-purple;
+		}
+	}
+	footer a {
+		color: $dark-yellow;
+	}
+	//buttons
+	button {
+		border-color: $pop-purple;
+		color: $pop-purple;
+		background-color: $dark-yellow;
+		&:hover,
+		&:focus {
+			background-color: $pop-purple;
+			color: $dark-yellow;
 		}
 	}
 }

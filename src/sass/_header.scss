@@ -19,6 +19,7 @@ nav {
 	background-color: $purple;
 	padding: 3px 20px;
 	border-radius: 10px;
+	border: 3px solid $purple;
 	margin: 20px;
 	margin-bottom: 0;
 	font-size: 2.5rem;
@@ -28,22 +29,26 @@ nav {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: 0.3s;
 	&:hover,
 	&:focus {
-		background-color: $yellow;
-		color: $brown;
+		color: $purple;
+		background-color: $light-green;
 	}
 }
 
 .Nav-link.special {
 	background-color: $red-light;
 	border-radius: 50%;
+	border: 3px solid $red-light;
 	font-size: 4.5rem;
 	-webkit-text-stroke-width: 1.5px;
 	-webkit-text-stroke-color: $red-light;
 	&:hover,
 	&:focus {
-		background-color: $yellow;
-		-webkit-text-stroke-color: $yellow;
+		background-color: transparent;
+		border-color: transparent;
+		-webkit-text-stroke-width: 0;
+		color: $red-light;
 	}
 }

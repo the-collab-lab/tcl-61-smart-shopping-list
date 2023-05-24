@@ -1,0 +1,37 @@
+@use '_variables.scss' as *;
+
+.Home form {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+	margin-bottom: 0;
+	.input {
+		display: flex;
+		flex-direction: column;
+		margin-right: 15px;
+	}
+	button::after {
+		position: absolute;
+		top: -9px;
+		right: -38px;
+		content: url('/img/after.svg');
+	}
+}
+
+.Home p {
+	height: 30px;
+}
+
+.Home .createListBtn {
+	position: relative;
+	margin-top: 75px;
+	padding: 15px 25px;
+	&::before {
+		position: absolute;
+		bottom: -37px;
+		left: -36px;
+		content: url('/img/before.svg');
+	}
+}
