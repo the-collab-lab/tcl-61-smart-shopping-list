@@ -4,7 +4,6 @@ import { updateItem, deleteItem } from '../api/firebase';
 
 export function ListItem({
 	name,
-	nameArray,
 	listToken,
 	itemId,
 	dateLastPurchased,
@@ -34,6 +33,18 @@ export function ListItem({
 	const [prevDateLastPurchased, setPrevDateLastPurchased] = useState(null);
 	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 	const [disabled, setDisabled] = useState(false);
+	// const [groupedNames, setGroupedNames] = useState({});
+	// useEffect(() => {
+	// 	const updatedGroupedNames = {};
+	// 	if (!updatedGroupedNames[`${itemUrgency()}`]) {
+	// 		updatedGroupedNames[`${itemUrgency()}`] = [];
+	// 	}
+	// 	updatedGroupedNames[`${itemUrgency()}`].push(name);
+
+	// 	setGroupedNames(updatedGroupedNames);
+	// }, [name]);
+
+	// console.log(groupedNames);
 
 	const currentDate = new Date().getTime();
 	const dateLastPurchasedPlus24h = dateLastPurchased
