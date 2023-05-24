@@ -5,6 +5,7 @@ import { updateItem, deleteItem } from '../api/firebase';
 export function ListItem({
 	name,
 	listToken,
+	newArray,
 	itemId,
 	dateLastPurchased,
 	dateNextPurchased,
@@ -34,6 +35,7 @@ export function ListItem({
 	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 	const [disabled, setDisabled] = useState(false);
 	// const [groupedNames, setGroupedNames] = useState({});
+
 	// useEffect(() => {
 	// 	const updatedGroupedNames = {};
 	// 	if (!updatedGroupedNames[`${itemUrgency()}`]) {
@@ -86,6 +88,8 @@ export function ListItem({
 			<div className="item-urgency">
 				<h3>{`${itemUrgency()}`}</h3>
 			</div>
+			{/* {groupedNames[`${itemUrgency()}`].map((itemName, index) => (
+				<li className="ListItem" key={Math.random() * 100}> */}
 			<li className="ListItem">
 				<label
 					htmlFor="wasPurchased"
@@ -112,6 +116,7 @@ export function ListItem({
 					/>
 				</label>
 				<span>
+					{/* <span>{itemName}</span> */}
 					<span>{name}</span>
 				</span>
 				<button
@@ -169,6 +174,7 @@ export function ListItem({
 					</svg>
 				</button>
 			</li>
+			{/* ))} */}
 		</>
 	);
 }
