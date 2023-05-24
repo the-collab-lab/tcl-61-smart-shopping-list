@@ -5,6 +5,7 @@ header {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding-top: 15px;
 	height: 25vh;
 }
 
@@ -102,45 +103,3 @@ nav {
 	right: 8px;
 	transform: scale(0.6);
 }
-
-// METHOD 2: cannot adjust size, responsiveness seems better
-
-// h1::after {
-// 	position: relative;
-// 	top: 40px;
-// 	left: -10px;
-// 	// transform: scale(.8);
-// 	content: url('/img/star1.svg');
-// }
-
-// h1::before {
-// 	position: relative;
-// 	top: -50px;
-// 	left: 40px;
-// 	// transform: scale(.5);
-// 	content: url('/img/star4.svg');
-// }
-// .title-container::before{
-
-// 		position: relative;
-// 		top: 25px;
-// 		left: 55px;
-// 		transform: scale(.8);
-// 		content: url('/img/star3.svg');
-
-// }
-
-// .Nav-link.special::after{
-// 	position: relative;
-// 	bottom: 60px;
-// 	left: 65px;
-// 	transform: scale(.6);
-// 	content: url('/img/lines-after.svg');
-// }
-// .Nav-link.special::before{
-// 	position: relative;
-// 	top: 85px;
-// 	right: 55px;
-// 	transform: scale(.6);
-// 	content: url('/img/lines-before.svg');
-// }
