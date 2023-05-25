@@ -39,29 +39,25 @@ export function ListItem({
 	// 	inactive: [],
 	// 	soon: [],
 	// 	"kind of soon": [],
-	// 	"not soon": [],
+	// 	"not soon": []
 	// });
 
-	// 	useEffect(() => {
-	//     setGroupedNames(prevGroupedNames => {
-	//     const setGroupNames = { ...prevGroupedNames };
+	// useEffect(() => {
+	// 	setGroupedNames(prevGroupedNames => {
+	// 		const setGroupNames = { ...prevGroupedNames };
 
-	//     function urgencyList() {
-	//       const urgencies = ["inactive", "soon", "kind of soon", "not soon"];
-	//       return urgencies[Math.floor(Math.random() * urgencies.length)];
-	//     }
+	// 		const urgency = `${itemUrgency()}`;
 
-	//     const urgency = urgencyList();
+	// 		if (!setGroupNames[urgency]) {
+	// 			setGroupNames[urgency] = [];
+	// 		}
+	// 		if (!setGroupNames[urgency].includes(name)) {
+	// 			setGroupNames[urgency].push(...prevGroupedNames[urgency], name);
+	// 		}
 
-	//     if (!setGroupNames[urgency]) {
-	//       setGroupNames[urgency] = [];
-	//     }
-	//     if (!setGroupNames[urgency].includes(name)) {
-	//       setGroupNames[urgency].push(...prevGroupedNames[urgency], name);
-	//     }
+	// 		return setGroupNames;
 
-	//     return setGroupNames; // Return the updated object as the new state
-	//   });
+	// 	});
 	// }, [name]);
 
 	// console.log('groupedNames', groupedNames);
@@ -151,7 +147,6 @@ export function ListItem({
 					/>
 				</button>
 			</li>
-			{/* ))} */}
 		</>
 	);
 }
