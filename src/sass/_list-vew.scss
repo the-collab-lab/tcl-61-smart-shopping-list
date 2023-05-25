@@ -102,6 +102,18 @@
 	font-size: 3em;
 }
 
+.delete-button {
+	margin-left: 10px;
+	background-color: transparent;
+	display: inline-block;
+	border: none;
+	padding: 0;
+
+	img {
+		background-blend-mode: soft-light;
+	}
+}
+
 //ListItem.jsx
 .ListItem {
 	display: flex;
@@ -117,6 +129,13 @@
 
 	.delete-button {
 		margin-left: 10px;
+		background-color: transparent;
+		display: inline-block;
+		border: none;
+		padding: 0;
+		img {
+			background-blend-mode: soft-light;
+		}
 	}
 }
 
@@ -172,7 +191,7 @@ input[type='checkbox']:disabled {
 	background-color: $yellow;
 	transform-origin: top right;
 
-	h3 {
+	.urgency-list {
 		margin: 0;
 		padding: 5px 15px 5px 47px;
 		font-size: 2.2rem;
