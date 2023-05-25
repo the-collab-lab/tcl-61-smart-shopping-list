@@ -44,6 +44,7 @@
 			color: $pop-purple;
 		}
 	}
+
 	footer a {
 		color: $dark-yellow;
 	}
@@ -56,6 +57,20 @@
 		&:focus {
 			background-color: $pop-purple;
 			color: $dark-yellow;
+		}
+	}
+	// SVGs
+	.lines-before,
+	.lines-after {
+		path {
+			stroke: $pop-purple;
+		}
+	}
+	.star-right,
+	.star-top,
+	.star-left {
+		path {
+			fill: $pop-purple;
 		}
 	}
 }
