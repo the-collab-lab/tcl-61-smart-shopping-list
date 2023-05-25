@@ -6,71 +6,79 @@
 		background-color: $brown;
 		color: $dark-yellow;
 	}
+
 	.wrapper {
 		background-color: $dark-purple;
 	}
+
 	h1 {
 		color: $teal;
 	}
+
 	.option h3 {
 		color: $dark-purple;
 	}
+
 	label {
 		color: $pop-purple;
 	}
+
 	input {
 		border: 3px solid $pop-purple;
 		background-color: $dark-yellow;
 		color: $pop-purple;
 	}
-	//nav bar
+
+	//header
 	.Nav-link {
 		background-color: $teal;
 		border-color: $teal;
 		color: $brown;
+
 		&:hover,
 		&:focus {
 			background-color: $brown;
 			color: $teal;
 		}
 	}
+
 	.Nav-link.special {
 		color: $brown;
 		background-color: $pop-purple;
 		border: 3px solid $pop-purple;
 		-webkit-text-stroke-color: $pop-purple;
+
 		&:hover,
 		&:focus {
 			color: $pop-purple;
 		}
 	}
 
+	.title-container .star-right,
+	.title-container .star-top,
+	.title-container .star-left {
+		fill: $pop-purple;
+	}
+
+	nav .lines-before,
+	nav .lines-after {
+		stroke: $pop-purple;
+	}
+
 	footer a {
 		color: $dark-yellow;
 	}
+
 	//buttons
 	button {
 		border-color: $pop-purple;
 		color: $pop-purple;
 		background-color: $dark-yellow;
+
 		&:hover,
 		&:focus {
 			background-color: $pop-purple;
 			color: $dark-yellow;
-		}
-	}
-	// SVGs
-	.lines-before,
-	.lines-after {
-		path {
-			stroke: $pop-purple;
-		}
-	}
-	.star-right,
-	.star-top,
-	.star-left {
-		path {
-			fill: $pop-purple;
 		}
 	}
 }
