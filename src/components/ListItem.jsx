@@ -35,36 +35,6 @@ export function ListItem({
 	const [prevDateLastPurchased, setPrevDateLastPurchased] = useState(null);
 	const [prevDateNextPurchased, setPrevDateNextPurchased] = useState(null);
 	const [disabled, setDisabled] = useState(false);
-	// const [groupedNames, setGroupedNames] = useState({
-	// 	inactive: [],
-	// 	soon: [],
-	// 	"kind of soon": [],
-	// 	"not soon": []
-	// });
-
-	// useEffect(() => {
-	// 	setGroupedNames(prevGroupedNames => {
-	// 		const setGroupNames = { ...prevGroupedNames };
-
-	// 		const urgency = `${itemUrgency()}`;
-
-	// 		if (!setGroupNames[urgency]) {
-	// 			setGroupNames[urgency] = [];
-	// 		}
-	// 		if (!setGroupNames[urgency].includes(name)) {
-	// 			setGroupNames[urgency].push(...prevGroupedNames[urgency], name);
-	// 		}
-
-	// 		return setGroupNames;
-
-	// 	});
-	// }, [name]);
-
-	// console.log('groupedNames', groupedNames);
-	// console.log(`${itemUrgency()}`)
-
-	// const nameList = groupedNames[`${itemUrgency()}`].map((itemName, index) => (
-	// 			<li key={index}>{itemName}</li>));
 
 	const currentDate = new Date().getTime();
 	const dateLastPurchasedPlus24h = dateLastPurchased
@@ -131,9 +101,7 @@ export function ListItem({
 						onChange={handleCheck}
 					/>
 				</label>
-				<span>
-					<span>{name}</span>
-				</span>
+				<span>{name}</span>
 				<button
 					onClick={(e) => {
 						handleDelete(e);
