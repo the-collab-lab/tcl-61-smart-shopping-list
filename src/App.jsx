@@ -6,7 +6,7 @@ import {
 	Navigate,
 } from 'react-router-dom';
 
-import { AddItem, Home, Layout, List } from './views';
+import { AddItem, Home, Layout, List, NotFound } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
@@ -54,6 +54,7 @@ export function App() {
 							)
 						}
 					/>
+					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
 		</Router>
