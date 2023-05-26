@@ -33,24 +33,20 @@ export function AddItem({ data, listToken }) {
 		return false;
 	};
 
-	const setStatusWithTimeout = (value, delay) => {
-		setSubmitStatus({ type: 'error', value });
-		setTimeout(() => {
-			setSubmitStatus({ type: 'idle', value: '' });
-		}, delay);
-	};
-
 	const addItemToList = async () => {
 		const normalizedItemName = normalizeText(itemName);
 
 		try {
 			// Checks if the item is already on the user's list.
 			if (checkIfItemExists(normalizedItemName)) {
-				setStatusWithTimeout('You already added this item to your list.', 3000);
+				setSubmitStatus({
+					type: 'error',
+					value: 'You already added this item to your list.',
+				});
 
 				// Checks if the user is trying to submit an empty item.
 			} else if (normalizedItemName === '') {
-				setStatusWithTimeout('Please enter an item.', 3000);
+				setSubmitStatus({ type: 'error', value: 'Please enter an item.' });
 			} else {
 				await addItem(listToken, {
 					itemName: itemName,
@@ -68,6 +64,11 @@ export function AddItem({ data, listToken }) {
 				value: 'Item is NOT saved in the database',
 			});
 		}
+
+		setTimeout(() => {
+			setSubmitStatus({ type: 'idle', value: '' });
+		}, 3000);
+
 		setItemName('');
 		setDaysUntilNextPurchase(7);
 	};
