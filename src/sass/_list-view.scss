@@ -3,23 +3,6 @@
 .list-container {
 	display: grid;
 	place-items: center;
-	.first-line {
-		font-family: $header-font;
-		color: $light-green;
-		font-weight: 400;
-		font-size: 60px;
-		line-height: 72px;
-		text-align: center;
-	}
-	.second-line {
-		font-family: $body-font;
-		font-style: normal;
-		font-weight: 400px;
-		font-size: 40px;
-		line-height: 60px;
-		text-align: center;
-		color: #ff404a;
-	}
 
 	.add-button {
 		position: relative;
@@ -35,6 +18,12 @@
 		line-height: 36px;
 		text-align: center;
 		color: $brown;
+		&:hover,
+		&:focus {
+			border-color: $purple;
+			background-color: $purple;
+			color: $light-green;
+		}
 		&::before {
 			position: absolute;
 			bottom: -37px;
@@ -108,6 +97,14 @@
 
 	img {
 		background-blend-mode: soft-light;
+		width: 25px;
+		height: 25px;
+		cursor: pointer;
+		&:hover,
+		&:focus {
+			filter: hue-rotate(0.75turn);
+			outline: none;
+		}
 	}
 }
 

@@ -78,7 +78,7 @@ export function List({ data, listToken }) {
 		</div>
 	) : (
 		<div className="list-container">
-			<p className="first-line">THIS IS WHAT YOU NEED TO BUY: </p>
+			<h2 className="first-line">THIS IS WHAT YOU NEED TO BUY: </h2>
 			<p className="second-line">YOUR LIST IS CURRENTLY EMPTY!</p>
 			<Link to={'/add-item'}>
 				<button className="add-button">ADD TO LIST</button>
