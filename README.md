@@ -71,3 +71,7 @@ PRs are welcome!
 - [Lauren Yu](https://github.com/laurenyz) 🐘
 
 - [Viviana Davila](https://github.com/vividavila98) 🌺
+
+# License
+
+[MIT](https://choosealicense.com/licenses/mit/)
