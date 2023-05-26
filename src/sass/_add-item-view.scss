@@ -43,13 +43,7 @@
 				input[type='radio']:checked + label {
 					background: $purple;
 					color: $light-green;
-					box-shadow: 0px 0px 20px $yellow;
-				}
-
-				legend {
-					font-family: $header-font;
-					font-size: 2rem;
-					color: #ff404a;
+					border-color: $red-dark;
 				}
 
 				label {
@@ -60,18 +54,20 @@
 					align-items: center;
 					background: $yellow;
 					color: $brown;
-					box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+					border: 3px solid transparent;
 					position: relative;
+					transition: 0.3s;
+					&:hover,
+					&:focus {
+						border-color: $purple;
+						background-color: $purple;
+						color: $light-green;
+					}
 				}
 			}
 		}
 
-		.add-item-btn {
-			border: 0;
-			color: $brown;
-		}
-
-		.add-item-btn::before {
+		button::before {
 			position: absolute;
 			bottom: -10%;
 			left: 35%;

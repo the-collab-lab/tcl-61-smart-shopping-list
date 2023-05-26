@@ -136,9 +136,7 @@ export function AddItem({ data, listToken }) {
 						</label>
 					</fieldset>
 				</div>
-				<button type="submit" className="add-item-btn">
-					Add
-				</button>
+				<button type="submit">Add</button>
 				<p>{submitStatus.value}</p>
 			</form>
 		</div>
