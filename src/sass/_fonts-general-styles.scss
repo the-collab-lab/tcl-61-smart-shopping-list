@@ -46,7 +46,8 @@ h2 {
 }
 
 //body fonts
-label {
+label,
+.list-container p {
 	font-family: $header-font;
 	color: $red-dark;
 	font-size: 2rem;
