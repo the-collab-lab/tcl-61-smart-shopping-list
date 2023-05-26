@@ -73,7 +73,8 @@ h2 {
 }
 
 //body fonts
-label {
+label,
+legend {
 	font-family: $header-font;
 	font-size: 2rem;
 	text-align: center;

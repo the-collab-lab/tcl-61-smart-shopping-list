@@ -1,0 +1,77 @@
+@use '_variables.scss' as *;
+
+.add-item-container {
+	position: relative;
+	align-items: center;
+	margin-bottom: 4em;
+
+	form {
+		.input {
+			display: flex;
+			flex-direction: column;
+			width: 75%;
+			margin: auto;
+		}
+
+		.input::after {
+			position: absolute;
+			top: 18%;
+			right: 4%;
+			content: url('/img/after.svg');
+		}
+
+		.item-urgency-container {
+			display: flex;
+			flex-direction: column;
+			padding: 30px 10px 0px 10px;
+
+			fieldset {
+				border: 0;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: center;
+				padding: 30px;
+
+				input[type='radio'] {
+					display: none;
+					&:not(:disabled) ~ label {
+						cursor: pointer;
+					}
+				}
+
+				input[type='radio']:checked + label {
+					background: $purple;
+					color: $light-green;
+					border-color: $red-dark;
+				}
+
+				label {
+					padding: 0.7em 1.1em;
+					margin: 0 0.3em 0.2em 0.3em;
+					border-radius: 15px;
+					display: flex;
+					align-items: center;
+					background: $yellow;
+					color: $brown;
+					border: 3px solid transparent;
+					position: relative;
+					transition: 0.3s;
+					&:hover,
+					&:focus {
+						border-color: $purple;
+						background-color: $purple;
+						color: $light-green;
+					}
+				}
+			}
+		}
+
+		button::before {
+			position: absolute;
+			bottom: -10%;
+			left: 35%;
+			content: url('/img/before.svg');
+		}
+	}
+}
