@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '../components';
 import { comparePurchaseUrgency } from '../api';
+import deleteButton from '/img/deleteButton.png';
 
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
@@ -32,7 +33,7 @@ export function List({ data, listToken }) {
 	}, [searchedData]);
 
 	return data.length > 0 ? (
-		<div>
+		<div className="item-list-container">
 			<form>
 				<label htmlFor="itemSearch">Search your shopping list:</label>
 				<input
@@ -46,18 +47,24 @@ export function List({ data, listToken }) {
 					<button
 						onClick={() => setItemSearch('')}
 						aria-label="clear search field"
+						className="delete-button"
 					>
-						x
+						<img
+							src={deleteButton}
+							className="delete-button-png"
+							alt="delete-button"
+						/>
 					</button>
 				)}
 			</form>
 			<form>
-				<ul>
+				<ul className="item-list">
 					{newData.map((data, i) => {
 						return (
 							<ListItem
 								key={data.id}
 								name={data.name}
+								nameArray={newData}
 								listToken={listToken}
 								itemId={data.id}
 								dateLastPurchased={data.dateLastPurchased}
@@ -70,11 +77,14 @@ export function List({ data, listToken }) {
 			{sortErrorMessage && <p> {sortErrorMessage} </p>}
 		</div>
 	) : (
-		<div>
-			<p>Welcome to your shopping list.</p>
+		<div className="list-container">
+			<h2 className="first-line">THIS IS WHAT YOU NEED TO BUY: </h2>
+			<p className="second-line">YOUR LIST IS CURRENTLY EMPTY!</p>
+			<h2>This is what you need to buy:</h2>
 			<p>Your Shopping List is currently empty!</p>
+    		<div>
 			<Link to={'/add-item'}>
-				<button>Add Item</button>
+				<button className="add-button">ADD TO LIST</button>
 			</Link>
 		</div>
 	);
