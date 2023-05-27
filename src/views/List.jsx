@@ -80,6 +80,9 @@ export function List({ data, listToken }) {
 		<div className="list-container">
 			<h2 className="first-line">THIS IS WHAT YOU NEED TO BUY: </h2>
 			<p className="second-line">YOUR LIST IS CURRENTLY EMPTY!</p>
+			<h2>This is what you need to buy:</h2>
+			<p>Your Shopping List is currently empty!</p>
+    		<div>
 			<Link to={'/add-item'}>
 				<button className="add-button">ADD TO LIST</button>
 			</Link>

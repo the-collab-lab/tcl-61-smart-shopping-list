@@ -5,13 +5,32 @@ header {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 25vh;
+	height: 30vh;
 }
 
 nav {
-	width: 100%;
+	width: 50%;
+	max-width: 420px;
 	display: flex;
-	justify-content: center;
+	height: 70px;
+
+	justify-content: space-around;
+	align-items: flex-end;
+	margin-top: 5px;
+	.lines-before,
+	.lines-after {
+		position: relative;
+		transform: scale(0.6);
+		stroke: $red-light;
+	}
+	.lines-before {
+		bottom: -8px;
+		right: -26px;
+	}
+	.lines-after {
+		bottom: 22px;
+		right: 8px;
+	}
 }
 
 .Nav-link {
@@ -19,8 +38,8 @@ nav {
 	background-color: $purple;
 	padding: 3px 20px;
 	border-radius: 10px;
-	margin: 20px;
-	margin-bottom: 0;
+	border: 3px solid $purple;
+	height: 40px;
 	font-size: 2.5rem;
 	line-height: 3rem;
 	text-decoration: none;
@@ -28,22 +47,58 @@ nav {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: 0.3s;
 	&:hover,
 	&:focus {
-		background-color: $yellow;
-		color: $brown;
+		color: $purple;
+		background-color: $light-green;
 	}
 }
 
 .Nav-link.special {
 	background-color: $red-light;
+	width: 105px;
+	height: 50px;
 	border-radius: 50%;
-	font-size: 4.5rem;
+	border: 3px solid $red-light;
+	font-size: 4rem;
+	align-self: start;
+	flex-direction: column;
 	-webkit-text-stroke-width: 1.5px;
 	-webkit-text-stroke-color: $red-light;
 	&:hover,
 	&:focus {
-		background-color: $yellow;
-		-webkit-text-stroke-color: $yellow;
+		background-color: transparent;
+		border-color: transparent;
+		-webkit-text-stroke-width: 0;
+		color: $red-light;
+	}
+
+	span {
+		margin: 0;
+		font-size: 4rem;
+	}
+}
+
+.title-container {
+	display: flex;
+	.star-right,
+	.star-top,
+	.star-left {
+		position: relative;
+		transform: scale(0.6);
+		fill: $red-light;
+	}
+	.star-right {
+		top: 23px;
+		left: -18px;
+	}
+	.star-top {
+		top: -50px;
+		left: 68px;
+	}
+	.star-left {
+		top: -2px;
+		right: -4px;
 	}
 }

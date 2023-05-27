@@ -2,10 +2,10 @@
 
 //general styles
 html {
-	background-color: $light-green;
 	font-family: $body-font;
 	font-size: 62.5%;
 	color: $light-green;
+	background-color: $light-green;
 }
 
 ul,
@@ -16,26 +16,28 @@ li {
 }
 
 .wrapper {
-	width: 55%;
-	max-width: 1100px;
-	margin: 0 auto;
-	padding: 30px;
-	padding-bottom: 0;
-	min-height: 75vh;
-	border-radius: 25px 25px 0 0;
-	background-color: $brown;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	width: 55%;
+	max-width: 1100px;
+	min-height: 70vh;
+	margin: 0 auto;
+	padding: 30px;
+	padding-bottom: 0;
+	border-radius: 25px 25px 0 0;
+	background-color: $brown;
+	text-align: center;
 }
 
 //header fonts
 h1 {
+	margin: 0;
 	font-family: $title-font;
 	color: $purple;
 	font-size: 6.5rem;
-	margin: 0;
 }
 
 h2,
@@ -44,23 +46,66 @@ h2,
 	text-align: center;
 	margin: 0;
 	margin-bottom: 2.5rem;
+	font-size: 4rem;
+	text-align: center;
+	-webkit-text-stroke-width: 1.5px;
+}
+
+.option {
+	position: absolute;
+	left: 0;
+	width: fit-content;
+	border-radius: 0 15px 15px 0;
+	background-color: $yellow;
+	transform-origin: top right;
+	h3 {
+		margin: 0;
+		padding: 5px 15px 5px 47px;
+		font-size: 2.2rem;
+		font-family: $pop-font;
+		color: $brown;
+	}
+	&.right {
+		left: auto;
+		right: 0;
+		border-radius: 15px 0 0 15px;
+		h3 {
+			padding: 5px 47px 5px 15px;
+		}
+	}
 }
 
 //body fonts
 label,
 .list-container p {
+legend {
 	font-family: $header-font;
-	color: $red-dark;
 	font-size: 2rem;
+	text-align: center;
+	color: $red-dark;
+}
+
+input {
+	margin-top: 5px;
+	border: 3px solid $red-light;
+	padding: 6px 11px;
+	border-radius: 15px;
+	font-family: $body-font;
+	font-size: 1.8rem;
+	color: $brown;
+	-webkit-text-stroke-width: 1.5px;
+	text-align: center;
+	background-color: $light-green;
 }
 
 p {
 	font-size: 2rem;
+	-webkit-text-stroke-width: 1.5px;
 }
 
 footer {
 	font-size: 1.4rem;
-	text-align: center;
+	-webkit-text-stroke-width: 1px;
 	a {
 		text-decoration: none;
 		color: $light-green;
@@ -68,5 +113,23 @@ footer {
 		&:focus {
 			color: $yellow;
 		}
+	}
+}
+
+//buttons
+button {
+	padding: 10px 15px;
+	border: none;
+	border-radius: 15px;
+	border: 3px solid $red-light;
+	font-family: $header-font;
+	font-size: 1.8rem;
+	color: $red-light;
+	background-color: $light-green;
+	transition: 0.3s;
+	&:hover,
+	&:focus {
+		background-color: $red-light;
+		color: $light-green;
 	}
 }
