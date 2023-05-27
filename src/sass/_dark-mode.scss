@@ -83,14 +83,17 @@
 			color: $dark-yellow;
 		}
 	}
+
 	.search-input .delete-button i {
 		color: $dark-purple;
 	}
 
 	button.delete-button {
 		background-color: transparent;
+
 		i {
 			color: $dark-yellow;
+
 			&:hover,
 			&:focus {
 				color: $pop-purple;
@@ -99,26 +102,27 @@
 	}
 
 	//add item
-	.item-urgency-container {
-		fieldset {
-			input[type='radio']:checked + label {
+	fieldset.item-urgency-container {
+		input[type='radio']:checked + label {
+			color: $teal;
+			border-color: $pop-purple;
+			background-color: $brown;
+		}
+
+		label {
+			color: $dark-purple;
+			border: 3px solid transparent;
+			transition: 0.3s;
+
+			&:hover,
+			&:focus {
 				color: $teal;
-				border-color: $pop-purple;
 				background-color: $brown;
-			}
-			label {
-				color: $dark-purple;
-				border: 3px solid transparent;
-				transition: 0.3s;
-				&:hover,
-				&:focus {
-					color: $teal;
-					background-color: $brown;
-					border-color: $brown;
-				}
+				border-color: $brown;
 			}
 		}
 	}
+
 	input[type='checkbox']::before {
 		background-color: $pop-purple;
 	}
