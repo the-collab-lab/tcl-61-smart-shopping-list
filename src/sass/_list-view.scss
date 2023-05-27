@@ -1,136 +1,49 @@
 @use '_variables.scss' as *;
 
-.list-container {
-	display: grid;
-	place-items: center;
-
-	.add-button {
-		position: relative;
-		transition: 0.5s ease-out;
-		width: 153px;
-		height: 114px;
-		background: $yellow;
-		border-radius: 40px;
-		font-family: $header-font;
-		font-style: normal;
-		font-weight: 400;
-		font-size: 30px;
-		line-height: 36px;
-		text-align: center;
-		color: $brown;
-		&:hover,
-		&:focus {
-			border-color: $purple;
-			background-color: $purple;
-			color: $light-green;
-		}
-		&::before {
-			position: absolute;
-			bottom: -37px;
-			left: -36px;
-			content: url('/img/before.svg');
-		}
-		&::after {
-			position: absolute;
-			top: -9px;
-			right: -38px;
-			content: url('/img/after.svg');
-		}
-	}
-}
-
-//list search view (with token) list.js
-
 .item-list-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
 	form {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-
-		label {
-			font-family: $header-font;
-			font-style: normal;
-			font-weight: 400;
-			font-size: 30px;
-			line-height: 36px;
-			text-align: center;
-			margin-bottom: 1em;
-			color: $light-green;
-		}
-		input[type='text'] {
-			margin-bottom: 2em;
-			background: #fff;
-			padding: 1.5em;
-			width: 80%;
-			border-radius: 10em;
-			transition: box-shadow 300ms ease;
-			color: $brown;
-			font-family: $header-font;
-			font-size: 1.5em;
-		}
-	}
-	ul {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		grid-gap: 5em;
-		list-style: none;
-		padding: 0;
-		li {
-			text-decoration: underline;
-			color: #e5f4d3;
-			font-size: 3em;
-		}
+		padding-bottom: 30px;
 	}
 }
 
-.delete-button {
-	margin-left: 10px;
-	background-color: transparent;
-	display: inline-block;
-	border: none;
-	padding: 0;
-
-	img {
-		background-blend-mode: soft-light;
-		width: 25px;
-		height: 25px;
-		cursor: pointer;
-		&:hover,
-		&:focus {
-			filter: hue-rotate(0.75turn);
-			outline: none;
-		}
+.search-input {
+	position: relative;
+	input {
+		max-width: 90%;
 	}
-}
-
-//ListItem.jsx
-.ListItem {
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-
-	label {
-		margin-right: 10px;
-	}
-
-	span {
-		flex-grow: 1;
-		text-align: center;
-	}
-
 	.delete-button {
-		margin-left: 10px;
-		background-color: transparent;
-		display: inline-block;
-		border: none;
-		padding: 0;
-		img {
-			background-blend-mode: soft-light;
+		position: absolute;
+		right: 15px;
+		top: 5px;
+		i {
+			color: $brown;
+		}
+	}
+}
+
+.item-list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.list-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 80%;
+		border-bottom: solid 1px $light-green;
+		padding: 15px;
+		padding-bottom: 0;
+		.name,
+		.info {
+			display: flex;
+			align-items: center;
+			p.disabled {
+				text-decoration: line-through;
+			}
 		}
 	}
 }
@@ -167,32 +80,4 @@ input[type='checkbox']::before {
 
 input[type='checkbox']:checked::before {
 	transform: scale(1);
-}
-
-input[type='checkbox']:focus {
-	outline: max(2px, 0.15em) solid currentColor;
-	outline-offset: max(2px, 0.15em);
-}
-
-input[type='checkbox']:disabled {
-	--form-control-color: $red-dark;
-	color: var(--form-control-disabled);
-	cursor: not-allowed;
-}
-
-.item-urgency {
-	position: relative;
-	width: fit-content;
-	border-radius: 0 15px 15px 0;
-	background-color: $yellow;
-	transform-origin: top right;
-
-	.urgency-list {
-		margin: 0;
-		padding: 5px 15px 5px 47px;
-		font-size: 2.2rem;
-		font-family: $pop-font;
-		color: $brown;
-		text-align: center;
-	}
 }

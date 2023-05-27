@@ -9,28 +9,12 @@ header {
 }
 
 nav {
-	width: 50%;
-	max-width: 420px;
 	display: flex;
-	height: 70px;
-
 	justify-content: space-around;
 	align-items: flex-end;
-	margin-top: 5px;
-	.lines-before,
-	.lines-after {
-		position: relative;
-		transform: scale(0.6);
-		stroke: $red-light;
-	}
-	.lines-before {
-		bottom: -8px;
-		right: -26px;
-	}
-	.lines-after {
-		bottom: 22px;
-		right: 8px;
-	}
+	width: 55%;
+	max-width: 420px;
+	height: 70px;
 }
 
 .Nav-link {
@@ -56,12 +40,12 @@ nav {
 }
 
 .Nav-link.special {
+	position: relative;
 	background-color: $red-light;
 	width: 105px;
 	height: 50px;
 	border-radius: 50%;
 	border: 3px solid $red-light;
-	font-size: 4rem;
 	align-self: start;
 	flex-direction: column;
 	-webkit-text-stroke-width: 1.5px;
@@ -73,32 +57,47 @@ nav {
 		-webkit-text-stroke-width: 0;
 		color: $red-light;
 	}
-
 	span {
 		margin: 0;
 		font-size: 4rem;
 	}
+	.lines-before,
+	.lines-after {
+		position: absolute;
+		transform: scale(0.6);
+		stroke: $red-light;
+	}
+	.lines-before {
+		bottom: -3.5rem;
+		left: -3rem;
+	}
+	.lines-after {
+		top: -3rem;
+		right: -3.5rem;
+	}
 }
 
 .title-container {
+	position: relative;
 	display: flex;
+	margin-bottom: 15px;
 	.star-right,
 	.star-top,
 	.star-left {
-		position: relative;
+		position: absolute;
 		transform: scale(0.6);
 		fill: $red-light;
 	}
 	.star-right {
-		top: 23px;
-		left: -18px;
+		bottom: -2.5rem;
+		right: -2.5rem;
 	}
 	.star-top {
-		top: -50px;
-		left: 68px;
+		top: -4.5rem;
+		left: -2rem;
 	}
 	.star-left {
-		top: -2px;
-		right: -4px;
+		top: 0;
+		left: -2.5rem;
 	}
 }

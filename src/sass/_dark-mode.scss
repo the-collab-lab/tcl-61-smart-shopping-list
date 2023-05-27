@@ -19,14 +19,20 @@
 		color: $dark-purple;
 	}
 
-	label {
+	label,
+	legend,
+	.list-container p {
 		color: $pop-purple;
 	}
 
 	input {
 		border: 3px solid $pop-purple;
 		background-color: $dark-yellow;
-		color: $pop-purple;
+		color: $dark-purple;
+	}
+
+	footer a {
+		color: $dark-yellow;
 	}
 
 	//header
@@ -60,13 +66,9 @@
 		fill: $pop-purple;
 	}
 
-	nav .lines-before,
-	nav .lines-after {
+	.Nav-link.special .lines-before,
+	.Nav-link.special .lines-after {
 		stroke: $pop-purple;
-	}
-
-	footer a {
-		color: $dark-yellow;
 	}
 
 	//buttons
@@ -80,5 +82,44 @@
 			background-color: $pop-purple;
 			color: $dark-yellow;
 		}
+	}
+	.search-input .delete-button i {
+		color: $dark-purple;
+	}
+
+	button.delete-button {
+		background-color: transparent;
+		i {
+			color: $dark-yellow;
+			&:hover,
+			&:focus {
+				color: $pop-purple;
+			}
+		}
+	}
+
+	//add item
+	.item-urgency-container {
+		fieldset {
+			input[type='radio']:checked + label {
+				color: $teal;
+				border-color: $pop-purple;
+				background-color: $brown;
+			}
+			label {
+				color: $dark-purple;
+				border: 3px solid transparent;
+				transition: 0.3s;
+				&:hover,
+				&:focus {
+					color: $teal;
+					background-color: $brown;
+					border-color: $brown;
+				}
+			}
+		}
+	}
+	input[type='checkbox']::before {
+		background-color: $pop-purple;
 	}
 }

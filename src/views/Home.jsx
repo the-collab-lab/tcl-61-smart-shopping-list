@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { checkItem } from '../api';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
+import { ReactSVG } from 'react-svg';
+
 export function Home({ setListToken }) {
 	const [tokenInput, setTokenInput] = useState('');
 	const [submitStatus, setSubmitStatus] = useState({ type: 'idle', value: '' });
@@ -40,10 +42,6 @@ export function Home({ setListToken }) {
 
 	return (
 		<div className="Home">
-			<div className="test">
-				<div className="bg"></div>
-			</div>
-
 			<h2>Join a List:</h2>
 			<div className="option">
 				<h3>Option #1</h3>
@@ -59,18 +57,23 @@ export function Home({ setListToken }) {
 						id="join-list"
 					/>
 				</div>
-				<button type="submit" disabled={!tokenInput}>
-					Join
-				</button>
+				<div className="after">
+					<ReactSVG className="after" src="/img/after.svg" />
+					<button type="submit" disabled={!tokenInput}>
+						Join
+					</button>
+				</div>
 			</form>
-			{/* {isError ? <p>This token does not exist!</p> : null} */}
 			<p>{submitStatus.value}</p>
 			<div className="option right">
 				<h3>Option #2</h3>
 			</div>
-			<button onClick={handleClick} className="createListBtn">
-				Create a new list
-			</button>
+			<div className="before">
+				<button onClick={handleClick} className="createListBtn">
+					Create a new list
+				</button>
+				<ReactSVG className="before" src="/img/before.svg" />
+			</div>
 		</div>
 	);
 }

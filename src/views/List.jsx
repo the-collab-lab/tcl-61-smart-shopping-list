@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '../components';
 import { comparePurchaseUrgency } from '../api';
-import deleteButton from '/img/deleteButton.png';
 
 export function List({ data, listToken }) {
 	const [itemSearch, setItemSearch] = useState('');
@@ -36,28 +35,31 @@ export function List({ data, listToken }) {
 		<div className="item-list-container">
 			<form>
 				<label htmlFor="itemSearch">Search your shopping list:</label>
-				<input
-					type="text"
-					id="itemSearch"
-					name="itemSearch"
-					value={itemSearch}
-					onChange={(e) => setItemSearch(e.target.value.toLowerCase())}
-				/>
-				{itemSearch && (
-					<button
-						onClick={() => setItemSearch('')}
-						aria-label="clear search field"
-						className="delete-button"
-					>
-						<img
-							src={deleteButton}
-							className="delete-button-png"
-							alt="delete-button"
-						/>
-					</button>
-				)}
+				<div className="search-input">
+					<input
+						type="text"
+						id="itemSearch"
+						name="itemSearch"
+						value={itemSearch}
+						onChange={(e) => setItemSearch(e.target.value.toLowerCase())}
+					/>
+					{itemSearch && (
+						<button
+							onClick={() => setItemSearch('')}
+							aria-label="clear search field"
+							className="delete-button"
+						>
+							<i
+								className="fa-solid fa-circle-xmark"
+								alt="delete"
+								title="clear search field"
+							></i>
+						</button>
+					)}
+				</div>
 			</form>
 			<form>
+				<h2>This is what you need to buy:</h2>
 				<ul className="item-list">
 					{newData.map((data, i) => {
 						return (
@@ -77,15 +79,11 @@ export function List({ data, listToken }) {
 			{sortErrorMessage && <p> {sortErrorMessage} </p>}
 		</div>
 	) : (
-		<div className="list-container">
-			<h2 className="first-line">THIS IS WHAT YOU NEED TO BUY: </h2>
-			<p className="second-line">YOUR LIST IS CURRENTLY EMPTY!</p>
-			<h2>This is what you need to buy:</h2>
-			<p>Your Shopping List is currently empty!</p>
-    		<div>
+		<>
+			<h2>Your Shopping List is currently empty!</h2>
 			<Link to={'/add-item'}>
-				<button className="add-button">ADD TO LIST</button>
+				<button className="flair">Add to List</button>
 			</Link>
-		</div>
+		</>
 	);
 }

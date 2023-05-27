@@ -1,0 +1,56 @@
+@use '_variables.scss' as *;
+
+// ::before & ::after flair
+button.flair {
+	position: relative;
+
+	&::before {
+		position: absolute;
+		bottom: -3.5rem;
+		left: -3.6rem;
+		content: url('/img/before.svg');
+	}
+
+	&::after {
+		position: absolute;
+		top: -2.3rem;
+		right: -3.8rem;
+		content: url('/img/after.svg');
+	}
+}
+
+// .add-item-container {
+// 	position: relative;
+
+// 	.input::after {
+// 		position: absolute;
+// 		top: 13%;
+// 		right: 4%;
+// 		content: url('/img/after.svg');
+// 	}
+
+// 	button::before {
+// 		position: absolute;
+// 		bottom: -8%;
+// 		left: 36%;
+// 		content: url('/img/before.svg');
+// 	}
+// }
+
+div.before {
+	position: relative;
+	.before {
+		position: relative;
+		bottom: 0.5rem;
+		left: -15rem;
+	}
+}
+
+div.after {
+	position: relative;
+	.after {
+		position: relative;
+		top: 1.5rem;
+		right: -6.5rem;
+	}
+}

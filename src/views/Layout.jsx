@@ -16,12 +16,12 @@ export function Layout() {
 						<NavLink to="/" className="Nav-link">
 							Home
 						</NavLink>
-						<ReactSVG className="lines-before" src="/img/lines-before.svg" />
 						<NavLink to="/list" className="Nav-link special">
+							<ReactSVG className="lines-before" src="/img/lines-before.svg" />
 							<span className="top">Your</span>
 							<span className="bottom">List</span>
+							<ReactSVG className="lines-after" src="/img/lines-after.svg" />
 						</NavLink>
-						<ReactSVG className="lines-after" src="/img/lines-after.svg" />
 						<NavLink to="/add-item" className="Nav-link">
 							Add Item
 						</NavLink>
