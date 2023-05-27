@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ONE_DAY_IN_MILLISECONDS, numOfDaysBtwnDates } from '../utils';
 import { updateItem, deleteItem } from '../api/firebase';
-import deleteButton from '/img/deleteButton.png';
 
 export function ListItem({
 	name,

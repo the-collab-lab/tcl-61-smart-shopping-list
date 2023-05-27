@@ -96,50 +96,48 @@ export function AddItem({ data, listToken }) {
 					/>
 				</div>
 				<p>{submitStatus.value}</p>
-				<div className="item-urgency-container">
-					<fieldset>
-						<legend htmlFor="itemFrequencyInDays">
-							How soon will you buy this again?
-						</legend>
-						<div className="inputs">
-							<input
-								type="radio"
-								id="7"
-								name="itemFrequencyInDays"
-								value="7"
-								checked={daysUntilNextPurchase === 7}
-								onChange={handleFrequencyInput}
-							/>
-							<label htmlFor="7">Soon</label>
-							<input
-								type="radio"
-								id="14"
-								name="itemFrequencyInDays"
-								value="14"
-								checked={daysUntilNextPurchase === 14}
-								onChange={handleFrequencyInput}
-							/>
-							<label htmlFor="14">
-								Kinda
-								<br />
-								soon
-							</label>
-							<input
-								type="radio"
-								id="30"
-								name="itemFrequencyInDays"
-								value="30"
-								checked={daysUntilNextPurchase === 30}
-								onChange={handleFrequencyInput}
-							/>
-							<label htmlFor="30">
-								Not
-								<br />
-								Soon
-							</label>
-						</div>
-					</fieldset>
-				</div>
+				<fieldset className="item-urgency-container">
+					<legend htmlFor="itemFrequencyInDays">
+						How soon will you buy this again?
+					</legend>
+					<div className="inputs">
+						<input
+							type="radio"
+							id="7"
+							name="itemFrequencyInDays"
+							value="7"
+							checked={daysUntilNextPurchase === 7}
+							onChange={handleFrequencyInput}
+						/>
+						<label htmlFor="7">Soon</label>
+						<input
+							type="radio"
+							id="14"
+							name="itemFrequencyInDays"
+							value="14"
+							checked={daysUntilNextPurchase === 14}
+							onChange={handleFrequencyInput}
+						/>
+						<label htmlFor="14">
+							Kinda
+							<br />
+							soon
+						</label>
+						<input
+							type="radio"
+							id="30"
+							name="itemFrequencyInDays"
+							value="30"
+							checked={daysUntilNextPurchase === 30}
+							onChange={handleFrequencyInput}
+						/>
+						<label htmlFor="30">
+							Not
+							<br />
+							Soon
+						</label>
+					</div>
+				</fieldset>
 				<button type="submit" className="flair">
 					Add
 				</button>

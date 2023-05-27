@@ -2,6 +2,7 @@
 
 .add-item-container {
 	align-items: center;
+
 	p {
 		height: 30px;
 	}
@@ -16,54 +17,56 @@
 	}
 }
 
-.item-urgency-container {
+fieldset.item-urgency-container {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
-	padding: 30px 10px 0px 10px;
-	fieldset {
-		border: 0;
+	justify-content: center;
+	flex-wrap: wrap;
+	border: 0;
+	padding: 30px;
+
+	input[type='radio'] {
+		display: none;
+
+		&:not(:disabled) ~ label {
+			cursor: pointer;
+		}
+	}
+
+	legend {
+		width: 100%;
+	}
+
+	input[type='radio']:checked + label {
+		background: $purple;
+		color: $light-green;
+		border-color: $red-dark;
+	}
+
+	.inputs {
+		width: 100%;
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	label {
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
 		justify-content: center;
-		padding: 30px;
+		width: 23%;
+		padding: 10px 15px;
+		margin: 20px 0;
+		background: $yellow;
+		color: $brown;
+		border: 3px solid transparent;
+		transition: 0.3s;
 
-		input[type='radio'] {
-			display: none;
-			&:not(:disabled) ~ label {
-				cursor: pointer;
-			}
-		}
-
-		input[type='radio']:checked + label {
-			background: $purple;
+		&:hover,
+		&:focus {
+			border-color: $purple;
+			background-color: $purple;
 			color: $light-green;
-			border-color: $red-dark;
-		}
-
-		.inputs {
-			width: 100%;
-			display: flex;
-			justify-content: space-around;
-		}
-		label {
-			border-radius: 15px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 25%;
-			padding: 10px 15px;
-			background: $yellow;
-			color: $brown;
-			border: 3px solid transparent;
-			transition: 0.3s;
-			&:hover,
-			&:focus {
-				border-color: $purple;
-				background-color: $purple;
-				color: $light-green;
-			}
 		}
 	}
 }
