@@ -72,11 +72,8 @@ export function ListItem({
 	};
 
 	return (
-		<>
-			<div className="item-urgency">
-				<h3 className="urgency-list">{`${itemUrgency()}`}</h3>
-			</div>
-			<li className="ListItem">
+		<li className="list-item">
+			<div className="name">
 				<label
 					htmlFor="wasPurchased"
 					aria-label={
@@ -101,20 +98,23 @@ export function ListItem({
 						onChange={handleCheck}
 					/>
 				</label>
-				<span>{name}</span>
+				<p className={disabled ? 'disabled' : null}>{name}</p>
+			</div>
+			<div className="info">
+				<p>{itemUrgency()}</p>
 				<button
 					onClick={(e) => {
 						handleDelete(e);
 					}}
 					className="delete-button"
 				>
-					<img
-						src={deleteButton}
-						className="delete-button-png"
-						alt="delete-button"
-					/>
+					<i
+						className="fa-solid fa-circle-xmark"
+						alt="delete"
+						title="Delete Item"
+					></i>
 				</button>
-			</li>
-		</>
+			</div>
+		</li>
 	);
 }

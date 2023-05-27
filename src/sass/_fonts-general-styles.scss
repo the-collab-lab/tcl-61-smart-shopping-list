@@ -15,6 +15,10 @@ li {
 	list-style: none;
 }
 
+main {
+	width: 100%;
+}
+
 .wrapper {
 	position: relative;
 	display: flex;
@@ -38,15 +42,14 @@ h1 {
 	font-family: $title-font;
 	color: $purple;
 	font-size: 6.5rem;
+	text-align: center;
 }
 
-h2,
-.second-line {
-	font-size: 3.5rem;
+h2 {
+	font-size: 3rem;
 	text-align: center;
 	margin: 0;
 	margin-bottom: 2.5rem;
-	font-size: 4rem;
 	text-align: center;
 	-webkit-text-stroke-width: 1.5px;
 }
@@ -58,6 +61,7 @@ h2,
 	border-radius: 0 15px 15px 0;
 	background-color: $yellow;
 	transform-origin: top right;
+
 	h3 {
 		margin: 0;
 		padding: 5px 15px 5px 47px;
@@ -65,10 +69,12 @@ h2,
 		font-family: $pop-font;
 		color: $brown;
 	}
+
 	&.right {
 		left: auto;
 		right: 0;
 		border-radius: 15px 0 0 15px;
+
 		h3 {
 			padding: 5px 47px 5px 15px;
 		}
@@ -77,8 +83,8 @@ h2,
 
 //body fonts
 label,
+legend,
 .list-container p {
-legend {
 	font-family: $header-font;
 	font-size: 2rem;
 	text-align: center;
@@ -98,17 +104,22 @@ input {
 	background-color: $light-green;
 }
 
-p {
+p,
+li {
 	font-size: 2rem;
 	-webkit-text-stroke-width: 1.5px;
 }
 
 footer {
 	font-size: 1.4rem;
+	margin: 60px 0 15px 0;
 	-webkit-text-stroke-width: 1px;
+
 	a {
 		text-decoration: none;
 		color: $light-green;
+		transition: 0.3s;
+
 		&:hover,
 		&:focus {
 			color: $yellow;
@@ -119,7 +130,6 @@ footer {
 //buttons
 button {
 	padding: 10px 15px;
-	border: none;
 	border-radius: 15px;
 	border: 3px solid $red-light;
 	font-family: $header-font;
@@ -127,9 +137,27 @@ button {
 	color: $red-light;
 	background-color: $light-green;
 	transition: 0.3s;
+
 	&:hover,
 	&:focus {
 		background-color: $red-light;
 		color: $light-green;
+	}
+}
+
+button.delete-button {
+	background-color: transparent;
+	border: none;
+	-webkit-text-stroke-width: 0px;
+
+	i {
+		color: $light-green;
+		transition: 0.3s;
+
+		&:hover,
+		&:focus {
+			color: $red-light;
+			background-color: transparent;
+		}
 	}
 }
