@@ -1,0 +1,129 @@
+@use '_variables.scss' as *;
+
+@media (prefers-color-scheme: dark) {
+	//fonts & general styles
+	html {
+		background-color: $brown;
+		color: $dark-yellow;
+	}
+
+	.wrapper {
+		background-color: $dark-purple;
+	}
+
+	h1 {
+		color: $teal;
+	}
+
+	.option h3 {
+		color: $dark-purple;
+	}
+
+	label,
+	legend,
+	.list-container p {
+		color: $pop-purple;
+	}
+
+	input {
+		border: 3px solid $pop-purple;
+		background-color: $dark-yellow;
+		color: $dark-purple;
+	}
+
+	footer a {
+		color: $dark-yellow;
+	}
+
+	//header
+	.Nav-link {
+		background-color: $teal;
+		border-color: $teal;
+		color: $brown;
+
+		&:hover,
+		&:focus {
+			background-color: $brown;
+			color: $teal;
+		}
+	}
+
+	.Nav-link.special {
+		color: $brown;
+		background-color: $pop-purple;
+		border: 3px solid $pop-purple;
+		-webkit-text-stroke-color: $pop-purple;
+
+		&:hover,
+		&:focus {
+			color: $pop-purple;
+		}
+	}
+
+	.title-container .star-right,
+	.title-container .star-top,
+	.title-container .star-left {
+		fill: $pop-purple;
+	}
+
+	.Nav-link.special .lines-before,
+	.Nav-link.special .lines-after {
+		stroke: $pop-purple;
+	}
+
+	//buttons
+	button {
+		border-color: $pop-purple;
+		color: $pop-purple;
+		background-color: $dark-yellow;
+
+		&:hover,
+		&:focus {
+			background-color: $pop-purple;
+			color: $dark-yellow;
+		}
+	}
+
+	.search-input .delete-button i {
+		color: $dark-purple;
+	}
+
+	button.delete-button {
+		background-color: transparent;
+
+		i {
+			color: $dark-yellow;
+
+			&:hover,
+			&:focus {
+				color: $pop-purple;
+			}
+		}
+	}
+
+	//add item
+	fieldset.item-urgency-container {
+		input[type='radio']:checked + label {
+			color: $teal;
+			border-color: $pop-purple;
+			background-color: $brown;
+		}
+
+		label {
+			color: $dark-purple;
+			border: 3px solid transparent;
+			transition: 0.3s;
+
+			&:hover,
+			&:focus {
+				color: $teal;
+				background-color: $brown;
+				border-color: $brown;
+			}
+		}
+	}
+
+	input[type='checkbox']::before {
+		background-color: $pop-purple;
+	}
+}

@@ -1,0 +1,103 @@
+@use '_variables.scss' as *;
+
+header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 30vh;
+}
+
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	width: 55%;
+	max-width: 420px;
+	height: 70px;
+}
+
+.Nav-link {
+	font-family: $pop-font;
+	background-color: $purple;
+	padding: 3px 20px;
+	border-radius: 10px;
+	border: 3px solid $purple;
+	height: 40px;
+	font-size: 2.5rem;
+	line-height: 3rem;
+	text-decoration: none;
+	color: $light-green;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s;
+	&:hover,
+	&:focus {
+		color: $purple;
+		background-color: $light-green;
+	}
+}
+
+.Nav-link.special {
+	position: relative;
+	background-color: $red-light;
+	width: 105px;
+	height: 50px;
+	border-radius: 50%;
+	border: 3px solid $red-light;
+	align-self: start;
+	flex-direction: column;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: $red-light;
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		border-color: transparent;
+		-webkit-text-stroke-width: 0;
+		color: $red-light;
+	}
+	span {
+		margin: 0;
+		font-size: 4rem;
+	}
+	.lines-before,
+	.lines-after {
+		position: absolute;
+		transform: scale(0.6);
+		stroke: $red-light;
+	}
+	.lines-before {
+		bottom: -3.5rem;
+		left: -3rem;
+	}
+	.lines-after {
+		top: -3rem;
+		right: -3.5rem;
+	}
+}
+
+.title-container {
+	position: relative;
+	display: flex;
+	margin-bottom: 15px;
+	.star-right,
+	.star-top,
+	.star-left {
+		position: absolute;
+		transform: scale(0.6);
+		fill: $red-light;
+	}
+	.star-right {
+		bottom: -2.5rem;
+		right: -2.5rem;
+	}
+	.star-top {
+		top: -4.5rem;
+		left: -2rem;
+	}
+	.star-left {
+		top: 0;
+		left: -2.5rem;
+	}
+}

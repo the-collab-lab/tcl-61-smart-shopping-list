@@ -1,0 +1,24 @@
+@use '_variables.scss' as *;
+
+.Home form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+	margin-bottom: 0;
+	.input {
+		display: flex;
+		flex-direction: column;
+		margin-right: 15px;
+		max-width: 80%;
+	}
+}
+
+.Home p {
+	height: 30px;
+}
+
+.Home .createListBtn {
+	margin-top: 75px;
+	padding: 15px 25px;
+}

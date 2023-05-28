@@ -1,0 +1,163 @@
+@use '_variables.scss' as *;
+
+//general styles
+html {
+	font-family: $body-font;
+	font-size: 62.5%;
+	color: $light-green;
+	background-color: $light-green;
+}
+
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+main {
+	width: 100%;
+}
+
+.wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 55%;
+	max-width: 1100px;
+	min-height: 70vh;
+	margin: 0 auto;
+	padding: 30px;
+	padding-bottom: 0;
+	border-radius: 25px 25px 0 0;
+	background-color: $brown;
+	text-align: center;
+}
+
+//header fonts
+h1 {
+	margin: 0;
+	font-family: $title-font;
+	color: $purple;
+	font-size: 6.5rem;
+	text-align: center;
+}
+
+h2 {
+	font-size: 3rem;
+	text-align: center;
+	margin: 0;
+	margin-bottom: 2.5rem;
+	text-align: center;
+	-webkit-text-stroke-width: 1.5px;
+}
+
+.option {
+	position: absolute;
+	left: 0;
+	width: fit-content;
+	border-radius: 0 15px 15px 0;
+	background-color: $yellow;
+	transform-origin: top right;
+
+	h3 {
+		margin: 0;
+		padding: 5px 15px 5px 47px;
+		font-size: 2.2rem;
+		font-family: $pop-font;
+		color: $brown;
+	}
+
+	&.right {
+		left: auto;
+		right: 0;
+		border-radius: 15px 0 0 15px;
+
+		h3 {
+			padding: 5px 47px 5px 15px;
+		}
+	}
+}
+
+//body fonts
+label,
+legend,
+.list-container p {
+	font-family: $header-font;
+	font-size: 2rem;
+	text-align: center;
+	color: $red-dark;
+}
+
+input {
+	margin-top: 5px;
+	border: 3px solid $red-light;
+	padding: 6px 11px;
+	border-radius: 15px;
+	font-family: $body-font;
+	font-size: 1.8rem;
+	color: $brown;
+	-webkit-text-stroke-width: 1.5px;
+	text-align: center;
+	background-color: $light-green;
+}
+
+p,
+li {
+	font-size: 2rem;
+	-webkit-text-stroke-width: 1.5px;
+}
+
+footer {
+	font-size: 1.4rem;
+	margin: 60px 0 15px 0;
+	-webkit-text-stroke-width: 1px;
+
+	a {
+		text-decoration: none;
+		color: $light-green;
+		transition: 0.3s;
+
+		&:hover,
+		&:focus {
+			color: $yellow;
+		}
+	}
+}
+
+//buttons
+button {
+	padding: 10px 15px;
+	border-radius: 15px;
+	border: 3px solid $red-light;
+	font-family: $header-font;
+	font-size: 1.8rem;
+	color: $red-light;
+	background-color: $light-green;
+	transition: 0.3s;
+
+	&:hover,
+	&:focus {
+		background-color: $red-light;
+		color: $light-green;
+	}
+}
+
+button.delete-button {
+	background-color: transparent;
+	border: none;
+	-webkit-text-stroke-width: 0px;
+
+	i {
+		color: $light-green;
+		transition: 0.3s;
+
+		&:hover,
+		&:focus {
+			color: $red-light;
+			background-color: transparent;
+		}
+	}
+}

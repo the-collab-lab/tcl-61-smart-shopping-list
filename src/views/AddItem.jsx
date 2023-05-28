@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 
 import { addItem } from '../api/firebase';
 
-// Removes excess spaces, punctuation, special characters, and makes all leters lowercase.
+// Removes excess spaces, punctuation, special characters, and makes all letters lowercase.
 const normalizeText = (item) => {
 	return item
 		.trim()
@@ -33,24 +33,20 @@ export function AddItem({ data, listToken }) {
 		return false;
 	};
 
-	const setStatusWithTimeout = (value, delay) => {
-		setSubmitStatus({ type: 'error', value });
-		setTimeout(() => {
-			setSubmitStatus({ type: 'idle', value: '' });
-		}, delay);
-	};
-
 	const addItemToList = async () => {
 		const normalizedItemName = normalizeText(itemName);
 
 		try {
 			// Checks if the item is already on the user's list.
 			if (checkIfItemExists(normalizedItemName)) {
-				setStatusWithTimeout('You already added this item to your list.', 3000);
+				setSubmitStatus({
+					type: 'error',
+					value: 'You already added this item to your list.',
+				});
 
 				// Checks if the user is trying to submit an empty item.
 			} else if (normalizedItemName === '') {
-				setStatusWithTimeout('Please enter an item.', 3000);
+				setSubmitStatus({ type: 'error', value: 'Please enter an item.' });
 			} else {
 				await addItem(listToken, {
 					itemName: itemName,
@@ -68,6 +64,11 @@ export function AddItem({ data, listToken }) {
 				value: 'Item is NOT saved in the database',
 			});
 		}
+
+		setTimeout(() => {
+			setSubmitStatus({ type: 'idle', value: '' });
+		}, 3000);
+
 		setItemName('');
 		setDaysUntilNextPurchase(7);
 	};
@@ -79,52 +80,68 @@ export function AddItem({ data, listToken }) {
 	const handleFrequencyInput = (e) => setDaysUntilNextPurchase(+e.target.value);
 
 	return (
-		<form onSubmit={(e) => submitForm(e)}>
-			<label htmlFor="itemName">Item name:</label>
-			<input
-				type="text"
-				id="itemName"
-				name="itemName"
-				value={itemName}
-				onChange={handleNameInput}
-				required
-			/>
-
-			<fieldset>
-				<legend htmlFor="itemFrequencyInDays">
-					How soon will you buy this again?
-				</legend>
-				<input
-					type="radio"
-					id="7"
-					name="itemFrequencyInDays"
-					value="7"
-					checked={daysUntilNextPurchase === 7}
-					onChange={handleFrequencyInput}
-				/>
-				<label htmlFor="7">Soon</label>
-				<input
-					type="radio"
-					id="14"
-					name="itemFrequencyInDays"
-					value="14"
-					checked={daysUntilNextPurchase === 14}
-					onChange={handleFrequencyInput}
-				/>
-				<label htmlFor="14">Kind of soon</label>
-				<input
-					type="radio"
-					id="30"
-					name="itemFrequencyInDays"
-					value="30"
-					checked={daysUntilNextPurchase === 30}
-					onChange={handleFrequencyInput}
-				/>
-				<label htmlFor="30">Not Soon</label>
-			</fieldset>
-
-			<button type="submit">Add Item</button>
-			<p>{submitStatus.value}</p>
-		</form>
+		<div className="add-item-container">
+			<h2>Add an Item:</h2>
+			<form onSubmit={(e) => submitForm(e)}>
+				<div className="input">
+					<label htmlFor="itemName">Item name:</label>
+					<input
+						type="text"
+						id="itemName"
+						className="after"
+						name="itemName"
+						value={itemName}
+						onChange={handleNameInput}
+						required
+					/>
+				</div>
+				<p>{submitStatus.value}</p>
+				<fieldset className="item-urgency-container">
+					<legend htmlFor="itemFrequencyInDays">
+						How soon will you buy this again?
+					</legend>
+					<div className="inputs">
+						<input
+							type="radio"
+							id="7"
+							name="itemFrequencyInDays"
+							value="7"
+							checked={daysUntilNextPurchase === 7}
+							onChange={handleFrequencyInput}
+						/>
+						<label htmlFor="7">Soon</label>
+						<input
+							type="radio"
+							id="14"
+							name="itemFrequencyInDays"
+							value="14"
+							checked={daysUntilNextPurchase === 14}
+							onChange={handleFrequencyInput}
+						/>
+						<label htmlFor="14">
+							Kinda
+							<br />
+							soon
+						</label>
+						<input
+							type="radio"
+							id="30"
+							name="itemFrequencyInDays"
+							value="30"
+							checked={daysUntilNextPurchase === 30}
+							onChange={handleFrequencyInput}
+						/>
+						<label htmlFor="30">
+							Not
+							<br />
+							Soon
+						</label>
+					</div>
+				</fieldset>
+				<button type="submit" className="flair">
+					Add
+				</button>
+			</form>
+		</div>
 	);
 }

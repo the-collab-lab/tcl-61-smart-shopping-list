@@ -1,0 +1,89 @@
+@use '_variables.scss' as *;
+
+.item-list-container {
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-bottom: 30px;
+	}
+}
+
+.search-input {
+	position: relative;
+	input {
+		max-width: 90%;
+	}
+	.delete-button {
+		position: absolute;
+		right: 15px;
+		top: 5px;
+		i {
+			color: $brown;
+		}
+	}
+}
+
+.item-list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.list-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 80%;
+		border-bottom: solid 1px $light-green;
+		padding: 15px;
+		padding-bottom: 0;
+		.name,
+		.info {
+			display: flex;
+			align-items: center;
+			p.disabled {
+				text-decoration: line-through;
+			}
+		}
+		.name p {
+			text-align: left;
+		}
+		.info p {
+			text-align: right;
+		}
+	}
+}
+
+input[type='checkbox'] {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: var(--form-background);
+	margin: 0;
+	font: inherit;
+	color: currentColor;
+	width: 1.15em;
+	height: 1.15em;
+	border: 0.15em solid currentColor;
+	border-radius: 0.15em;
+	transform: translateY(-0.075em);
+	margin-right: 0.5em;
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+
+input[type='checkbox']::before {
+	content: '';
+	width: 0.65em;
+	height: 0.65em;
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	transform: scale(0);
+	transform-origin: bottom left;
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--form-control-color);
+	background-color: $red-dark;
+}
+
+input[type='checkbox']:checked::before {
+	transform: scale(1);
+}

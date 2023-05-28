@@ -1,0 +1,74 @@
+@use '_variables.scss' as *;
+
+.add-item-container {
+	align-items: center;
+
+	p {
+		height: 30px;
+	}
+
+	form {
+		.input {
+			display: flex;
+			flex-direction: column;
+			margin: auto;
+			width: 75%;
+		}
+	}
+}
+
+fieldset.item-urgency-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	border: 0;
+	padding: 30px;
+
+	input[type='radio'] {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+
+		&:not(:disabled) ~ label {
+			cursor: pointer;
+		}
+	}
+
+	legend {
+		width: 100%;
+	}
+
+	input[type='radio']:checked + label {
+		background: $purple;
+		color: $light-green;
+		border-color: $red-dark;
+	}
+
+	.inputs {
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	label {
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 23%;
+		padding: 10px 15px;
+		margin: 20px 0;
+		background: $yellow;
+		color: $brown;
+		border: 3px solid transparent;
+		transition: 0.3s;
+
+		&:hover,
+		&:focus {
+			border-color: $purple;
+			background-color: $purple;
+			color: $light-green;
+		}
+	}
+}
