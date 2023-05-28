@@ -1,8 +1,8 @@
 # Overview
 
-Introducing PREDICT-A-Buy: The Ultimate Shopping Companion!
+<p>Introducing <b>PREDICT-A-BUY</b>: The Ultimate Shopping Companion!</p>
 
-With PREDICT-A-Buy by your side, shopping becomes an adventure, a journey through time. Let the app be your trusty sidekick, anticipating your needs and guiding you through the aisles with its charming personality. Say goodbye to mundane shopping lists and hello to a shopping experience that's as fun and sassy! 
+With PREDICT-A-BUY by your side, shopping becomes an adventure, a journey through time. Let the app be your trusty sidekick, anticipating your needs and guiding you through the aisles with its charming personality. Say goodbye to mundane shopping lists and hello to a shopping experience that's as fun and sassy! 
 
 # How does it work?
 
@@ -10,7 +10,7 @@ As a user, you will enter items (e.g., “Greek yogurt” or “Paper towels”)
 
 # Installing
 
-## Clone the product locally
+#### 1. Clone the product locally
 - On GitHub, navigate to the repo for your cohort’s project (you’re probably there right now), then:
 - Click on the "Code" tab. It may already be selected.
 - Click the green "Code" button to reveal a "Clone" popup.
@@ -19,18 +19,18 @@ As a user, you will enter items (e.g., “Greek yogurt” or “Paper towels”)
 - From your terminal, cd into the directory where you want this project to live. screenshot of how to navigate folders in terminal
 - Once you’re in the directory, type git clone followed by the web URL you just copied to your clipboard from GitHub. Then cd into the directory that is created.
 
-## Install dependencies
-- Once you’ve cloned the project locally and you’re in the project directory, you’ll want to install the project’s dependencies. To do so, type the following into your terminal: npm install
+#### 2. Install dependencies
+- Once you’ve cloned the project locally and you’re in the project directory, you’ll want to install the project’s dependencies. To do so, type the following into your terminal: ```npm install```
 
-## Access the product in your browser
-After you’ve cloned the project locally and updated the dependencies, run the project by typing the following into your terminal: npm start. You should be able to see the project at localhost:3000.
+#### 3. Access the product in your browser
+After you’ve cloned the project locally and updated the dependencies, run the project by typing the following into your terminal: ```npm start```. You should be able to see the project at localhost:3000.
 
 # Technologies:
 This project was built utilizing a combination of React, HTML, SASS, JavaScript and Firebase. 
 
 # Features
-- Users can look at what's on the list, so the you know what you need to buy.
-- Users can navigate among the pages of our application, Home, List and Add Item. 
+- Users can look at what's on the list, so they know what they need to buy.
+- Users can navigate among the pages of our application, ```Home```, ```List``` and ```Add Item```. 
 - A shopping list is a set of items associated with a specific three-word token. We allow users to start new lists, so you can save the things you need to buy or share your shopping list with your friends by entering the existing token. 
 - Users can add or delete items to your shopping lists.
 - Users can search through your list. 
@@ -44,10 +44,12 @@ This project was built utilizing a combination of React, HTML, SASS, JavaScript 
 - Need to buy not soon (30 days or more until the next purchase)
 - Inactive (60 days have passed since the last purchase)
 
-# How to use? 
 ## Demo
 
-# Future contributions and requests
+https://github.com/the-collab-lab/tcl-61-smart-shopping-list/assets/97640502/63d5451f-25b9-4d68-bcfb-b618b08a41e2
+#### 🔗 [Live Site](https://tcl-61-smart-shopping-list.web.app/)
+
+### Future contributions and requests:
 PRs are welcome!
 
 # Credits:
