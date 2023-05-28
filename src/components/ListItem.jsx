@@ -5,7 +5,6 @@ import { updateItem, deleteItem } from '../api/firebase';
 export function ListItem({
 	name,
 	listToken,
-	newArray,
 	itemId,
 	dateLastPurchased,
 	dateNextPurchased,
