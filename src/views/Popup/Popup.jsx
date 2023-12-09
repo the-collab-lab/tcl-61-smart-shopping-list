@@ -42,16 +42,8 @@ export function Popup({ setShowPopup }) {
 				</ul>
 				<div className="tcl">
 					<p>
-						The Collab Lab is collaborative, remote project practice for early
-						career developers.
-					</p>
-					<p>
-						The Collab Lab exists to help early-career developers, especially
-						ones from historically excluded groups, land that first job in tech.
-						We do that by providing remote, collaborative project practice where
-						developers are mentored by professionals in the field. We augment
-						the project work with targeted career advice and feedback to help
-						developers get and do well in tech interviews.
+						The Collab Lab provides collaborative, remote project practice for
+						early career developers.
 					</p>
 					<a
 						href="https://the-collab-lab.codes"

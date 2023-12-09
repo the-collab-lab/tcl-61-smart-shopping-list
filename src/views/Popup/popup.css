@@ -1,5 +1,5 @@
 #popupCon {
-	position: absolute;
+	position: fixed;
 	z-index: 1000;
 	height: 100vh;
 	width: 100vw;
@@ -103,4 +103,20 @@
 	text-align: center;
 	text-decoration: underline;
 	color: #ffe600;
+}
+
+@media (max-width: 765px) {
+	#popup {
+		top: 20px;
+		width: 70%;
+		border-width: 9px;
+		padding: 10px 15px;
+	}
+	#popup button#close {
+		padding: 7px 10px;
+	}
+	#popup .tcl {
+		margin: 10px -15px -10px -15px;
+		padding: 10px 15px 10px 15px;
+	}
 }
