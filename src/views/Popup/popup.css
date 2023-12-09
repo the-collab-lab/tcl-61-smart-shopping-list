@@ -1,4 +1,4 @@
-#popupCon {
+#bg {
 	position: fixed;
 	z-index: 1000;
 	height: 100vh;
@@ -14,7 +14,7 @@
 	right: 0;
 	left: 0;
 	width: 50%;
-	max-width: 700px;
+	max-width: 430px;
 	margin: auto;
 	border: solid 20px #0c6cff;
 	padding: 20px 35px;
@@ -99,7 +99,6 @@
 #popup .tcl a {
 	display: block;
 	margin-bottom: 18px;
-	font-size: 18px;
 	text-align: center;
 	text-decoration: underline;
 	color: #ffe600;
@@ -108,6 +107,8 @@
 @media (max-width: 765px) {
 	#popup {
 		top: 20px;
+		max-height: 500px;
+		overflow-y: scroll;
 		width: 70%;
 		border-width: 9px;
 		padding: 10px 15px;

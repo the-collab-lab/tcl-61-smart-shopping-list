@@ -3,6 +3,7 @@ import './popup.css';
 export function Popup({ setShowPopup }) {
 	return (
 		<div id="popupCon">
+			<div id="bg"></div>
 			<div id="popup">
 				<link
 					href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
