@@ -1,4 +1,4 @@
-import './Popup.css';
+import './popup.css';
 
 export function Popup({ setShowPopup }) {
 	return (
