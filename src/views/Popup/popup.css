@@ -1,0 +1,106 @@
+#popupCon {
+	position: absolute;
+	z-index: 1000;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(13, 13, 13, 0.5);
+}
+
+#popup {
+	all: unset;
+	position: absolute;
+	z-index: 10000;
+	top: 50px;
+	right: 0;
+	left: 0;
+	width: 50%;
+	max-width: 700px;
+	margin: auto;
+	border: solid 20px #0c6cff;
+	padding: 20px 35px;
+	background-color: #fff;
+
+	font-family: 'Atkinson Hyperlegible';
+	font-size: 18px;
+	font-weight: 100;
+	color: #0d0d0d;
+	-webkit-text-stroke-color: transparent;
+}
+
+#popup p {
+	margin: 18px 0 18px 0;
+}
+
+#popup .token {
+	padding: 20px;
+	text-align: center;
+	background-color: #ff94e8;
+}
+
+#popup .token p {
+	margin-top: 0;
+}
+
+#popup #threeWordToken p {
+	font-weight: 700;
+	font-size: 28px;
+}
+
+#popup button {
+	font-weight: 700;
+	border: none;
+	border-radius: 0;
+	padding: 10px 15px;
+	font-family: 'Atkinson Hyperlegible';
+	font-size: 15px;
+	background-color: #0c6cff;
+	color: #fff;
+	transition: 0.3;
+}
+
+#popup button#close {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#popup button#copy {
+	background-color: #26ad60;
+}
+
+#popup button:hover,
+#popup button:focus,
+#popup button#copy:hover,
+#popup button#copy:focus {
+	background-color: #0d0d0d;
+	cursor: pointer;
+}
+
+#popup ul p {
+	margin-bottom: 5px;
+}
+
+#popup ul li {
+	list-style-type: square;
+	list-style-position: inside;
+}
+
+#popup .tcl {
+	margin: 20px -35px -20px -35px;
+	padding: 20px 35px 20px 35px;
+	background-color: #0d0d0d;
+	color: #fff;
+}
+
+#popup .tcl p {
+	font-size: 15px;
+}
+
+#popup .tcl a {
+	display: block;
+	margin-bottom: 18px;
+	font-size: 18px;
+	text-align: center;
+	text-decoration: underline;
+	color: #ffe600;
+}
