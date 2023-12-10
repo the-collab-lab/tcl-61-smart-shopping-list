@@ -2,8 +2,8 @@ import './popup.css';
 
 export function Popup({ setShowPopup }) {
 	return (
-		<div id="popupCon">
-			<div id="bg"></div>
+		<div id="popup-con">
+			<div id="popup-bg"></div>
 			<div id="popup">
 				<link
 					href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
@@ -33,10 +33,10 @@ export function Popup({ setShowPopup }) {
 						</button>
 					</div>
 				</div>
+				<p className="not-supported">
+					Please note that the following features are no longer supported:
+				</p>
 				<ul>
-					<p>
-						Please note that the following features are no longer supported:
-					</p>
 					<li>Creating new shopping lists</li>
 					<li>Adding & deleting items from the shopping list</li>
 					<li>Marking items on the list as purchased</li>

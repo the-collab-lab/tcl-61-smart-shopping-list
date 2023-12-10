@@ -1,4 +1,4 @@
-#bg {
+#popup-bg {
 	position: fixed;
 	z-index: 1000;
 	height: 100vh;
@@ -14,7 +14,7 @@
 	right: 0;
 	left: 0;
 	width: 50%;
-	max-width: 430px;
+	max-width: 450px;
 	margin: auto;
 	border: solid 20px #0c6cff;
 	padding: 20px 35px;
@@ -76,7 +76,7 @@
 	cursor: pointer;
 }
 
-#popup ul p {
+#popup p.not-supported {
 	margin-bottom: 5px;
 }
 
